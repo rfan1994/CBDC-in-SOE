@@ -129,7 +129,7 @@ PHI_Y = 10;
 PHI_E = 2;
 R_BAR = 1.02/0.997;
 PI_BAR = 1.02;
-Y_BAR = 1.03208*1.25793;
+Y_BAR = 0.992601*1.26487;
 E_BAR = 1.02;
 //% SHOCKS
 RHO_A = 0.96;
@@ -172,7 +172,7 @@ h = (1-LAMBDA)*h1+LAMBDA*h2;
 k = (1-LAMBDA)*(d1+s*d_f1);
 
 //% 6 resource constraint
-y_h = GAMMA*p_h^(-ETA)*((1-LAMBDA)*(1+s1)*c1+LAMBDA*(1+s2)*c2+i)+DELTA_M*m2(-1)/pi
+y_h = GAMMA*p_h^(-ETA)*((1-LAMBDA)*(1+s1)*c1+LAMBDA*(1+s2)*c2+i)+LAMBDA*DELTA_M*m2(-1)/pi
     + a_g+KAPPA_P/2*(pi_h-PI_BAR)^2*y_h+GAMMA_STAR*(p_h/s)^(-ETA)*a_y_star;
 
 //% 7 welfare
@@ -223,14 +223,13 @@ h2^PHI = lm2*w/CHI;
 lm2*(1-c2/l2*(tau2+TAU_C*cbdc2/l2)*(l2/m2)^(1/EPSILON_M)) = BETA*lm2(+1)*(1-DELTA_M)/pi(+1);
 
 //% 21 dollar
-lm2*(1-c2/l2*(tau2+TAU_C*cbdc2/l2)*(l2/(s*m_f2))^(1/EPSILON_M)+KAPPA_M*LAMBDA*(LAMBDA*m_f2-MF_BAR)) = BETA*lm2(+1)*(1-DELTA_M)*s(+1)/s;
+lm2*(1-c2/l2*(tau2+TAU_C*cbdc2/l2)*(l2/(s*m_f2))^(1/EPSILON_M)+KAPPA_M*LAMBDA*(LAMBDA*m_f2-MF_BAR)) = BETA*lm2(+1)*s(+1)/s;
 
 //% 22 CBDC
-//% lm2*(1-c2/l2*(tau2+TAU_C*cbdc2/l2)*(l2/cbdc2)^(1/EPSILON_M)+TAU_C*cbdc2/l2) = BETA*lm2(+1)/pi(+1);
-cbdc2 = 0;
+lm2*(1-c2/l2*(tau2+TAU_C*cbdc2/l2)*(l2/cbdc2)^(1/EPSILON_M)+TAU_C*cbdc2/l2) = BETA*lm2(+1)/pi(+1);
 
 //% 23 BC
-(1+s2+TAU_C*cbdc2/l2)*c2+(m2-(1-DELTA_M)*m2(-1)/pi)+s*(m_f2-(1-DELTA_M)*m_f2(-1))+(cbdc2-cbdc2(-1)/pi) = w*h2-t2-KAPPA_M/2*s*(LAMBDA*m_f2-MF_BAR)^2;
+(1+s2+TAU_C*cbdc2/l2)*c2+(m2-(1-DELTA_M)*m2(-1)/pi)+s*(m_f2-m_f2(-1)/s(-1))+(cbdc2-cbdc2(-1)/pi) = w*h2-t2-KAPPA_M/2*s*(LAMBDA*m_f2-MF_BAR)^2;
 
 //% 24 liquidity
 l2 = (m2^((EPSILON_M-1)/EPSILON_M)+(s*m_f2)^((EPSILON_M-1)/EPSILON_M)+cbdc2^((EPSILON_M-1)/EPSILON_M))^(EPSILON_M/(EPSILON_M-1));
@@ -295,8 +294,8 @@ log(a_r_star) = (1-RHO_R_STAR)*log(R_STAR_BAR)+RHO_R_STAR*log(a_r_star(-1))+eps_
 
 //% GOVERNMENT 
 //% 42 interest rate
-//% r/R_BAR = (r(-1)/R_BAR)^RHO_R*((pi/PI_BAR)^PHI_PI*(p_h*y_h/Y_BAR)^PHI_Y*(delta_e/E_BAR)^PHI_E)^(1-RHO_R)*exp(eps_m);
-r = R_BAR*exp(eps_m);
+r/R_BAR = (r(-1)/R_BAR)^RHO_R*((pi/PI_BAR)^PHI_PI*(p_h*y_h/Y_BAR)^PHI_Y*(delta_e/E_BAR)^PHI_E)^(1-RHO_R)*exp(eps_m);
+//% r = R_BAR*exp(eps_m);
 
 //% 43 balance sheet
 //% a_g+r(-1)/pi*(1-LAMBDA)*b1(-1)+LAMBDA*m2(-1)/pi
@@ -331,7 +330,7 @@ log_pi = log(pi);
 log_tot = log(p_h/s);
 log_d1 = log(d1);
 log_m2 = log(m2);
-log_cbdc2= log(CBDC2);
+log_cbdc2 = 0;
 log_m_f2 = log(m_f2);
 end;
 
@@ -345,45 +344,48 @@ a_z = 1;
 a_g = 0;
 a_y_star = 1;
 a_r_star = 1.00301;
-c = 0.98086;
-h = 0.433073;
-k = 11.107;
-i = 0.277676;
-y_h = 1.26341;
-v = -450.887;
-lm1 = 0.925214;
-c1 = 1.01458;
-h1 = 0.39688;
-d1 = 13.8838;
+c = 0.97908;
+h = 0.434069;
+k = 11.0943;
+i = 0.277357;
+y_h = 1.26487;
+v = -451.944;
+lm1 = 0.930137;
+c1 = 1.01189;
+h1 = 0.397619;
+d1 = 13.8678;
+d_f1 = 0;
 b1 = 2.5;
 b_f1 = 0.625;
-l1 = 13.8838;
+l1 = 13.8678;
 s1 = 0;
 tau1 = 0;
-v1 = -417.803;
-lm2 = 1.34708;
-c2 = 0.846;
-h2 = 0.577845;
-m2 = 0.163405;
-cbdc2 = 0.466327;
-l2 = 1.18182;
-s2 = 0.000106672;
-tau2 = 0.0173702;
-v2 = -583.224;
+v1 = -419.008;
+lm2 = 1.35646;
+c2 = 0.847854;
+h2 = 0.579867;
+m2 = 0.0271317;
+m_f2 = 0.126842;
+cbdc2 = 0.309977;
+l2 = 1.18855;
+s2 = 0.0000546959;
+tau2 = 0.0124381;
+v2 = -583.689;
 r_d = 1.02307;
+r_df = 1.00301;
 r_k = 0.028009;
-w = 1.45846;
+w = 1.45345;
 q = 1;
-mc = 0.746172;
+mc = 0.744451;
 pi_h = 1.02;
 pi = 1.02;
-p_h = 0.994896;
-s = 1.04841;
+p_h = 0.992601;
+s = 1.07191;
 delta_e = 1.02;
 r = 1.02307;
-tax = 0.0439212;
-t1 = -0.0403727;
-t2 = -0.0403727;
+tax = 0.0426867;
+t1 = -0.0379906;
+t2 = -0.0379906;
 end;
 
 
@@ -408,7 +410,8 @@ end;
 //%------------------------------------------------------------
 
 stoch_simul(nograph, order = 1, hp_filter = 1600, irf = 101) 
-v v1 v2 log_y log_c log_c1 log_c2 log_r log_r_d log_w log_pi_h log_pi log_tot log_d1 log_m2 log_cbdc2 log_r_df log_d_f1 log_m_f2;
+v v1 v2 log_y log_c log_c1 log_c2 log_r log_r_d log_w log_pi_h log_pi log_tot log_d1 log_m2 log_cbdc2 log_m_f2;
+
 
 
 

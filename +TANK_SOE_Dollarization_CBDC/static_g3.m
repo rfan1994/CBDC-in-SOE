@@ -18,6 +18,6 @@ function g3 = static_g3(T, y, x, params, T_flag)
 if T_flag
     T = TANK_SOE_Dollarization_CBDC.static_g3_tt(T, y, x, params);
 end
-g3 = sparse([],[],[],63,250047);
+g3 = sparse([],[],[],61,226981);
 
 end

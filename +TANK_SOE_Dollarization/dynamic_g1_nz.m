@@ -1,6 +1,6 @@
 function [nzij_pred, nzij_current, nzij_fwrd] = dynamic_g1_nz()
 % Returns the coordinates of non-zero elements in the Jacobian, in column-major order, for each lead/lag (only for endogenous)
-  nzij_pred = zeros(23, 2, 'int32');
+  nzij_pred = zeros(24, 2, 'int32');
   nzij_pred(1,1)=1; nzij_pred(1,2)=1;
   nzij_pred(2,1)=2; nzij_pred(2,2)=2;
   nzij_pred(3,1)=40; nzij_pred(3,2)=4;
@@ -21,9 +21,10 @@ function [nzij_pred, nzij_current, nzij_fwrd] = dynamic_g1_nz()
   nzij_pred(18,1)=23; nzij_pred(18,2)=27;
   nzij_pred(19,1)=37; nzij_pred(19,2)=27;
   nzij_pred(20,1)=36; nzij_pred(20,2)=41;
-  nzij_pred(21,1)=39; nzij_pred(21,2)=42;
-  nzij_pred(22,1)=46; nzij_pred(22,2)=44;
-  nzij_pred(23,1)=47; nzij_pred(23,2)=44;
+  nzij_pred(21,1)=23; nzij_pred(21,2)=42;
+  nzij_pred(22,1)=39; nzij_pred(22,2)=42;
+  nzij_pred(23,1)=46; nzij_pred(23,2)=44;
+  nzij_pred(24,1)=47; nzij_pred(24,2)=44;
   nzij_current = zeros(180, 2, 'int32');
   nzij_current(1,1)=1; nzij_current(1,2)=1;
   nzij_current(2,1)=32; nzij_current(2,2)=1;

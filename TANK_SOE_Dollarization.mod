@@ -129,7 +129,7 @@ PHI_Y = 10;
 PHI_E = 2;
 R_BAR = 1.02/0.997;
 PI_BAR = 1.02;
-Y_BAR = 1.26131*1.00409;
+Y_BAR = 0.993317*1.26398;
 E_BAR = 1.02;
 //% SHOCKS
 RHO_A = 0.96;
@@ -172,7 +172,7 @@ h = (1-LAMBDA)*h1+LAMBDA*h2;
 k = (1-LAMBDA)*(d1+s*d_f1);
 
 //% 6 resource constraint
-y_h = GAMMA*p_h^(-ETA)*((1-LAMBDA)*(1+s1)*c1+LAMBDA*(1+s2)*c2+i)+DELTA_M*m2(-1)/pi
+y_h = GAMMA*p_h^(-ETA)*((1-LAMBDA)*(1+s1)*c1+LAMBDA*(1+s2)*c2+i)+LAMBDA*DELTA_M*m2(-1)/pi
     + a_g+KAPPA_P/2*(pi_h-PI_BAR)^2*y_h+GAMMA_STAR*(p_h/s)^(-ETA)*a_y_star;
 
 //% 7 welfare
@@ -223,14 +223,14 @@ h2^PHI = lm2*w/CHI;
 lm2*(1-c2/l2*(tau2+TAU_C*cbdc2/l2)*(l2/m2)^(1/EPSILON_M)) = BETA*lm2(+1)*(1-DELTA_M)/pi(+1);
 
 //% 21 dollar
-lm2*(1-c2/l2*(tau2+TAU_C*cbdc2/l2)*(l2/(s*m_f2))^(1/EPSILON_M)+KAPPA_M*LAMBDA*(LAMBDA*m_f2-MF_BAR)) = BETA*lm2(+1)*(1-DELTA_M)*s(+1)/s;
+lm2*(1-c2/l2*(tau2+TAU_C*cbdc2/l2)*(l2/(s*m_f2))^(1/EPSILON_M)+KAPPA_M*LAMBDA*(LAMBDA*m_f2-MF_BAR)) = BETA*lm2(+1)*s(+1)/s;
 
 //% 22 CBDC
 //% lm2*(1-c2/l2*(tau2+TAU_C*cbdc2/l2)*(l2/cbdc2)^(1/EPSILON_M)+TAU_C*cbdc2/l2) = BETA*lm2(+1)/pi(+1);
 cbdc2 = 0;
 
 //% 23 BC
-(1+s2+TAU_C*cbdc2/l2)*c2+(m2-(1-DELTA_M)*m2(-1)/pi)+s*(m_f2-(1-DELTA_M)*m_f2(-1))+(cbdc2-cbdc2(-1)/pi) = w*h2-t2-KAPPA_M/2*s*(LAMBDA*m_f2-MF_BAR)^2;
+(1+s2+TAU_C*cbdc2/l2)*c2+(m2-(1-DELTA_M)*m2(-1)/pi)+s*(m_f2-m_f2(-1)/s(-1))+(cbdc2-cbdc2(-1)/pi) = w*h2-t2-KAPPA_M/2*s*(LAMBDA*m_f2-MF_BAR)^2;
 
 //% 24 liquidity
 l2 = (m2^((EPSILON_M-1)/EPSILON_M)+(s*m_f2)^((EPSILON_M-1)/EPSILON_M)+cbdc2^((EPSILON_M-1)/EPSILON_M))^(EPSILON_M/(EPSILON_M-1));
@@ -345,48 +345,48 @@ a_z = 1;
 a_g = 0;
 a_y_star = 1;
 a_r_star = 1.00301;
-c = 0.986823;
-h = 0.430401;
-k = 11.1911;
-i = 0.279779;
-y_h = 1.26131;
-v = -448.635;
-lm1 = 0.90241;
-c1 = 1.02731;
-h1 = 0.392451;
-d1 = 13.9889;
+c = 0.976553;
+h = 0.433607;
+k = 11.0944;
+i = 0.27736;
+y_h = 1.26398;
+v = -453.602;
+lm1 = 0.924214;
+c1 = 1.01512;
+h1 = 0.395513;
+d1 = 13.868;
 d_f1 = 0;
 b1 = 2.5;
 b_f1 = 0.625;
-l1 = 13.9889;
+l1 = 13.868;
 s1 = 0;
 tau1 = 0;
-v1 = -411.747;
-lm2 = 1.33872;
-c2 = 0.82486;
-h2 = 0.5822;
-m2 = 0.386464;
-m_f2 = 0.185371;
+v1 = -417.011;
+lm2 = 1.3693;
+c2 = 0.822268;
+h2 = 0.585987;
+m2 = 0.258137;
+m_f2 = 0.27494;
 cbdc2 = 0;
-l2 = 1.09103;
-s2 = 0.00316696;
-tau2 = 0.0946971;
-v2 = -596.184;
+l2 = 1.10051;
+s2 = 0.00214799;
+tau2 = 0.0779747;
+v2 = -599.965;
 r_d = 1.02307;
 r_df = 1.00301;
 r_k = 0.028009;
-w = 1.47863;
+w = 1.45501;
 q = 1;
-mc = 0.753069;
+mc = 0.744988;
 pi_h = 1.02;
 pi = 1.02;
-p_h = 1.00409;
-s = 0.964615;
+p_h = 0.993317;
+s = 1.06445;
 delta_e = 1.02;
 r = 1.02307;
-tax = 0.0410926;
-t1 = -0.0365901;
-t2 = -0.0365901;
+tax = 0.040605;
+t1 = -0.0355992;
+t2 = -0.0355992;
 end;
 
 
