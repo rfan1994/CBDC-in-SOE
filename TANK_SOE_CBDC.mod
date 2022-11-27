@@ -83,36 +83,36 @@ LAMBDA = 0.2;
 //% discount factor, IES, leisure weight, frisch
 //% ES, home bias
 //% transaction cost, transaction ES
-BETA = 0.997;
+BETA = 0.99;
 SIGMA = 2;
-CHI = 3.4;
-PHI = 1;
+CHI = 1;
+PHI = 3;
 ETA = 2;
 GAMMA = 0.9;
 GAMMA_STAR = 0.1;
-A = 1;
-B = 0.5; 
-DELTA_M = 0.05;
+A = 0.9;
+B = 0.7; 
+DELTA_M = 0.1;
 EPSILON_M = 2;
 //% PRODUCTION
 //% capital share, depreciation, price adjustment, production ES
 ALPHA = 0.33;
 DELTA = 0.025;
 KAPPA_P = 2;
-EPSILON = 4;
+EPSILON = 6;
 //% FINANCE
 //% investment adjustment, deposit ES
 //% foreign adjustment cost
-KAPPA_I = 5.46; 
+KAPPA_I = 1.728; 
 EPSILON_B = 3; 
 KAPPA_B = 5; 
 KAPPA_D = 10; 
 KAPPA_M = 10; 
-BF_BAR = 0.5;
+BF_BAR = 0.05;
 DF_BAR = 0;
 MF_BAR = 0;
 //% Fiscal
-TAU_C = 0.05;
+TAU_C = 0.12;
 PHI_B = 1;
 PHI_M = 1;
 PHI_G = 1;
@@ -126,26 +126,26 @@ RHO_R = 0.5;
 PHI_PI = 10;
 PHI_Y = 10;
 PHI_E = 2;
-R_BAR = 1.02/0.997;
-PI_BAR = 1.02;
-Y_BAR = 0.993104*1.26339;
-E_BAR = 1.02;
+R_BAR = 1.03/0.99;
+PI_BAR = 1.03;
+Y_BAR = 2.29561*0.983381;
+E_BAR = 1.03;
 //% SHOCKS
-RHO_A = 0.96;
-RHO_Z = 0.95; 
-RHO_G = 0.95; 
+RHO_A = 0.9;
+RHO_Z = 0.7217; 
+RHO_G = 0.8; 
 Y_STAR_BAR = 1;
 R_STAR_BAR = 1/BETA;
 A_BAR = 1; 
 Z_BAR = 1; 
-G_BAR = 0; 
-RHO_Y_STAR = 0.95;
-RHO_R_STAR = 0.99;
-STDERR_A = 0.015;
-STDERR_Z = 0.01;
-STDERR_G = 0.01;
-STDERR_Y_STAR = 0.01;
-STDERR_R_STAR = 0.01;
+G_BAR = 0.3; 
+RHO_Y_STAR = 0.6031;
+RHO_R_STAR = 0.5374;
+STDERR_A = 0.0711;
+STDERR_Z = 0.0694;
+STDERR_G = 0.05;
+STDERR_Y_STAR = 0.0788;
+STDERR_R_STAR = 0.0799;
 STDERR_M = 0.25;
 
 //%------------------------------------------------------------
@@ -291,8 +291,7 @@ r/R_BAR = (r(-1)/R_BAR)^RHO_R*((pi/PI_BAR)^PHI_PI*(p_h*y_h/Y_BAR)^PHI_Y*(delta_e
 b1 = B_BAR/(1-LAMBDA);
 
 //% 41 government purchase 
-//% log(a_g) = (1-RHO_G)*log(G_BAR)+RHO_G*log(a_g(-1))+eps_g;
-a_g = G_BAR*exp(eps_g);
+log(a_g) = (1-RHO_G)*log(G_BAR)+RHO_G*log(a_g(-1))+eps_g;
 
 //% 42 tax revenue
 tax = (1-LAMBDA)*TAU_C*c1+LAMBDA*TAU_C*cbdc2/l2*c2;
@@ -329,48 +328,48 @@ end;
 initval;
 a_a = 1;
 a_z = 1;
-a_g = 0;
+a_g = 0.3;
 a_y_star = 1;
-a_r_star = 1.00301;
-c = 0.979113;
-h = 0.433453;
-k = 11.0869;
-i = 0.277173;
-y_h = 1.26339;
-v = -451.689;
-lm1 = 0.928513;
-c1 = 1.01277;
-h1 = 0.397225;
-d1 = 13.8586;
+a_r_star = 1.0101;
+c = 1.51714;
+h = 0.842308;
+k = 17.6383;
+i = 0.440957;
+y_h = 2.29824;
+v = -79.8269;
+lm1 = 0.352382;
+c1 = 1.59178;
+h1 = 0.80716;
+d1 = 22.0479;
 b1 = 2.5;
-b_f1 = 0.625;
-l1 = 13.8586;
+b_f1 = 0.0625;
+l1 = 22.0479;
 s1 = 0;
 tau1 = 0;
-v1 = -418.543;
-lm2 = 1.35194;
-c2 = 0.84448;
-h2 = 0.578368;
-m2 = 0.163111;
-cbdc2 = 0.465489;
-l2 = 1.1797;
-s2 = 0.000106672;
-tau2 = 0.0173702;
-v2 = -584.276;
-r_d = 1.02307;
-r_k = 0.028009;
-w = 1.45454;
+v1 = -73.4341;
+lm2 = 0.636297;
+c2 = 1.21855;
+h2 = 0.982898;
+m2 = 0.202603;
+cbdc2 = 0.519237;
+l2 = 1.37053;
+s2 = 5.23725e-05;
+tau2 = 0.012895;
+v2 = -105.398;
+r_d = 1.0404;
+r_k = 0.035101;
+w = 1.49233;
 q = 1;
-mc = 0.744828;
-pi_h = 1.02;
-pi = 1.02;
-p_h = 0.993104;
-s = 1.06667;
-delta_e = 1.02;
-r = 1.02307;
-tax = 0.043843;
-t1 = -0.0402901;
-t2 = -0.0402901;
+mc = 0.816331;
+pi_h = 1.03;
+pi = 1.03;
+p_h = 0.979597;
+s = 1.2307;
+delta_e = 1.03;
+r = 1.0404;
+tax = 0.163891;
+t1 = 0.152106;
+t2 = 0.152106;
 end;
 
 steady(solve_algo = 4, maxit = 5000);
@@ -393,7 +392,7 @@ end;
 //% TO SEE PROPERTIES OF MODEL
 //%------------------------------------------------------------
 
-stoch_simul(nograph, order = 1, hp_filter = 1600, irf = 101) 
+stoch_simul(nograph, order = 1, hp_filter = 100, irf = 101)  
 v v1 v2 log_y log_c log_c1 log_c2 log_r log_r_d log_w log_pi_h log_pi log_tot log_d1 log_m2 log_cbdc2;
 
 

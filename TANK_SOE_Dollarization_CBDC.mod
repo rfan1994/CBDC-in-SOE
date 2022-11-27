@@ -84,15 +84,15 @@ LAMBDA = 0.2;
 //% discount factor, IES, leisure weight, frisch
 //% ES, home bias
 //% transaction cost, transaction ES
-BETA = 0.997;
+BETA = 0.99;
 SIGMA = 2;
-CHI = 3.4;
-PHI = 1;
+CHI = 1;
+PHI = 3;
 ETA = 2;
 GAMMA = 0.9;
 GAMMA_STAR = 0.1;
-A = 1;
-B = 0.5; 
+A = 0.9;
+B = 0.7; 
 DELTA_M = 0.1;
 EPSILON_M = 2;
 //% PRODUCTION
@@ -100,20 +100,20 @@ EPSILON_M = 2;
 ALPHA = 0.33;
 DELTA = 0.025;
 KAPPA_P = 2;
-EPSILON = 4;
+EPSILON = 6;
 //% FINANCE
 //% investment adjustment, deposit ES
 //% foreign adjustment cost
-KAPPA_I = 5.46; 
+KAPPA_I = 1.728; 
 EPSILON_B = 3; 
 KAPPA_B = 5; 
 KAPPA_D = 10; 
 KAPPA_M = 10; 
-BF_BAR = 0.5;
-DF_BAR = 0;
+BF_BAR = 0.05;
+DF_BAR = 2;
 MF_BAR = 0;
 //% Fiscal
-TAU_C = 0.05;
+TAU_C = 0.12;
 PHI_B = 1;
 PHI_M = 1;
 PHI_G = 1;
@@ -127,26 +127,26 @@ RHO_R = 0.5;
 PHI_PI = 10;
 PHI_Y = 10;
 PHI_E = 2;
-R_BAR = 1.02/0.997;
-PI_BAR = 1.02;
-Y_BAR = 0.992601*1.26487;
-E_BAR = 1.02;
+R_BAR = 1.03/0.99;
+PI_BAR = 1.03;
+Y_BAR = 2.29561*0.983381;
+E_BAR = 1.03;
 //% SHOCKS
-RHO_A = 0.96;
-RHO_Z = 0.95; 
-RHO_G = 0.95; 
+RHO_A = 0.9;
+RHO_Z = 0.7217; 
+RHO_G = 0.8; 
 Y_STAR_BAR = 1;
 R_STAR_BAR = 1/BETA;
 A_BAR = 1; 
 Z_BAR = 1; 
-G_BAR = 0; 
-RHO_Y_STAR = 0.95;
-RHO_R_STAR = 0.99;
-STDERR_A = 0.015;
-STDERR_Z = 0.01;
-STDERR_G = 0.01;
-STDERR_Y_STAR = 0.01;
-STDERR_R_STAR = 0.01;
+G_BAR = 0.3; 
+RHO_Y_STAR = 0.6031;
+RHO_R_STAR = 0.5374;
+STDERR_A = 0.0711;
+STDERR_Z = 0.0694;
+STDERR_G = 0.05;
+STDERR_Y_STAR = 0.0788;
+STDERR_R_STAR = 0.0799;
 STDERR_M = 0.25;
 
 //%------------------------------------------------------------
@@ -189,8 +189,7 @@ h1^PHI = lm1*w/CHI;
 lm1*(1-c1/l1*tau1) = BETA*lm1(+1)*r_d/pi(+1);
 
 //% 11 dollar deposit 
-//% lm1*(1+KAPPA_D*(1-LAMBDA)*((1-LAMBDA)*d_f1-DF_BAR)-c1/l1*tau1) = BETA*lm1(+1)*s(+1)/s*r_df;
-d_f1 = 0;
+lm1*(1+KAPPA_D*(1-LAMBDA)*((1-LAMBDA)*d_f1-DF_BAR)-c1/l1*tau1) = BETA*lm1(+1)*s(+1)/s*r_df;
 
 //% 12 bond
 lm1 = BETA*lm1(+1)*r/pi(+1);
@@ -303,8 +302,7 @@ r/R_BAR = (r(-1)/R_BAR)^RHO_R*((pi/PI_BAR)^PHI_PI*(p_h*y_h/Y_BAR)^PHI_Y*(delta_e
 b1 = B_BAR/(1-LAMBDA);
 
 //% 44 government purchase 
-//% log(a_g) = (1-RHO_G)*log(G_BAR)+RHO_G*log(a_g(-1))+eps_g;
-a_g = G_BAR*exp(eps_g);
+log(a_g) = (1-RHO_G)*log(G_BAR)+RHO_G*log(a_g(-1))+eps_g;
 
 //% 45 tax revenue
 tax = (1-LAMBDA)*TAU_C*c1+LAMBDA*TAU_C*cbdc2/l2*c2;
@@ -330,7 +328,7 @@ log_pi = log(pi);
 log_tot = log(p_h/s);
 log_d1 = log(d1);
 log_m2 = log(m2);
-log_cbdc2 = 0;
+log_cbdc2 = log(cbdc2);
 log_m_f2 = log(m_f2);
 end;
 
@@ -341,51 +339,51 @@ end;
 initval;
 a_a = 1;
 a_z = 1;
-a_g = 0;
+a_g = 0.3;
 a_y_star = 1;
-a_r_star = 1.00301;
-c = 0.97908;
-h = 0.434069;
-k = 11.0943;
-i = 0.277357;
-y_h = 1.26487;
-v = -451.944;
-lm1 = 0.930137;
-c1 = 1.01189;
-h1 = 0.397619;
-d1 = 13.8678;
-d_f1 = 0;
+a_r_star = 1.0101;
+c = 1.51464;
+h = 0.843359;
+k = 17.652;
+i = 0.4413;
+y_h = 2.30076;
+v = -80.2392;
+lm1 = 0.350715;
+c1 = 1.59556;
+h1 = 0.805759;
+d1 = 18.9772;
+d_f1 = 2.5;
 b1 = 2.5;
-b_f1 = 0.625;
-l1 = 13.8678;
+b_f1 = 0.0625;
+l1 = 22.0565;
 s1 = 0;
 tau1 = 0;
-v1 = -419.008;
-lm2 = 1.35646;
-c2 = 0.847854;
-h2 = 0.579867;
-m2 = 0.0271317;
-m_f2 = 0.126842;
-cbdc2 = 0.309977;
-l2 = 1.18855;
-s2 = 0.0000546959;
-tau2 = 0.0124381;
-v2 = -583.689;
-r_d = 1.02307;
-r_df = 1.00301;
-r_k = 0.028009;
-w = 1.45345;
+v1 = -73.5515;
+lm2 = 0.645333;
+c2 = 1.2266;
+h2 = 0.987172;
+m2 = 0.0534071;
+m_f2 = 0.153591;
+cbdc2 = 0.258974;
+l2 = 1.38431;
+s2 = 1.75555e-05;
+tau2 = 0.00746573;
+v2 = -105.268;
+r_d = 1.0404;
+r_df = 1.0101;
+r_k = 0.035101;
+w = 1.49071;
 q = 1;
-mc = 0.744451;
-pi_h = 1.02;
-pi = 1.02;
-p_h = 0.992601;
-s = 1.07191;
-delta_e = 1.02;
-r = 1.02307;
-tax = 0.0426867;
-t1 = -0.0379906;
-t2 = -0.0379906;
+mc = 0.815736;
+pi_h = 1.03;
+pi = 1.03;
+p_h = 0.978883;
+s = 1.24093;
+delta_e = 1.03;
+r = 1.0404;
+tax = 0.158096;
+t1 = 0.160286;
+t2 = 0.160286;
 end;
 
 
@@ -409,7 +407,7 @@ end;
 //% TO SEE PROPERTIES OF MODEL
 //%------------------------------------------------------------
 
-stoch_simul(nograph, order = 1, hp_filter = 1600, irf = 101) 
+stoch_simul(nograph, order = 1, hp_filter = 100, irf = 101) 
 v v1 v2 log_y log_c log_c1 log_c2 log_r log_r_d log_w log_pi_h log_pi log_tot log_d1 log_m2 log_cbdc2 log_m_f2;
 
 

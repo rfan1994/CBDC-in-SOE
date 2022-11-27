@@ -73,6 +73,27 @@ dV(1,:) = (Welfare3./Welfare1).^(1/(1-sigma))-1;
 dV(2,:) = (Welfare2./Welfare1).^(1/(1-sigma))-1;
 dV(3,:) = (Welfare4./Welfare3).^(1/(1-sigma))-1;
 
+delta_M = 0.1;
+SS = zeros(21,4);
+SS(1:5,1) = SS1(6:10)'; SS(1:5,2) = SS2(6:10)';
+SS(6:8,1) = SS1(13:15)'; SS(6:8,2) = SS2(13:15)';
+SS(10:12,1) = SS1(23:25)'; SS(10:12,2) = SS2(23:25)';
+SS(14,1) = SS1(26); SS(14,2) = SS2(26);
+SS(15,1) = SS1(28); SS(15,2) = SS2(28);
+SS(16,1) = SS1(25)*delta_M; SS(16,2) = SS2(25)*delta_M;
+SS(17:18,1) = SS1(32:33)'; SS(17:18,2) = SS2(32:33)';
+SS(19:20,1) = SS1(38:39)'; SS(19:20,2) = SS2(38:39)';
+SS(21,1) = SS1(42); SS(21,2) = SS2(42);
+
+SS(1:5,3) = SS3(6:10)'; SS(1:5,4) = SS4(6:10)';
+SS(6:9,3) = SS3(13:16)'; SS(6:9,4) = SS4(13:16)';
+SS(10:14,3) = SS3(24:28)'; SS(10:14,4) = SS4(24:28)';
+SS(15,3) = SS3(30); SS(15,4) = SS4(30);
+SS(16,3) = SS3(26)*delta_M; SS(16,4) = SS4(26)*delta_M;
+SS(17:18,3) = SS3(35:36)'; SS(17:18,4) = SS4(35:36)';
+SS(19:20,3) = SS3(41:42)'; SS(19:20,4) = SS4(41:42)';
+SS(21,3) = SS3(45); SS(21,4) = SS4(45);
+
 
 %% Variance decomposition
 Variance = {Variance1,Variance2,Variance3,Variance4};     
@@ -80,8 +101,8 @@ varexo_name = {'TFP','Liquidity','Government purchase',...
                'Foreign output','Foreign interest rate','Monetary'};
 var_list = {'v','v1','v2','log_y','log_c','log_c1','log_c2','log_z',...
             'log_z_d','log_w','log_pi_h','log_pi','log_tot','log_d1','log_m2','log_cbdc2'};
-var_list_name = {'Social welfare','Welfare (non RT)','Welfare (RT)','Output',...
-                 'Consumption','Consumption (non RT)','Consumption (RT)',...
+var_list_name = {'Social welfare','Welfare (unconstrained)','Welfare (constrained)','Output',...
+                 'Consumption','Consumption (unconstrained)','Consumption (constrained)',...
                  'Interest rate','Deposit rate','Wage','Domestic inflation',...
                  'CPI inflation','TOT','Deposit','Cash','CBDC'};  
 Model = categorical({'Benchmark no CBDC','Benchmark with CBDC',...
@@ -89,27 +110,28 @@ Model = categorical({'Benchmark no CBDC','Benchmark with CBDC',...
 Model = reordercats(Model,{'Benchmark no CBDC','Benchmark with CBDC',...
                            'Dollarization no CBDC','Dollarization with CBDC'});
 
-variance = zeros(4,3);          
+variance = zeros(4,4);          
 for i = 1:15
     for n = 1:N
         variance(n,1) = Variance{n}(i,1);
-        variance(n,2) = Variance{n}(i,4)+Variance{n}(i,5);
-        variance(n,3) = Variance{n}(i,6);
+        variance(n,2) = Variance{n}(i,2);
+        variance(n,3) = Variance{n}(i,4)+Variance{n}(i,5);
+        variance(n,4) = Variance{n}(i,6);
     end
     filename = append(var_list{i},'.png');
     figure('Position',[100 100 700 300]);
     bar(Model,variance)
     ylim([0 100])
-    legend('Technology Shock', 'International Shock', 'Monetary Shock','Location','SouthOutside','Orientation','horizontal','Box','off')
+    legend('Technology shock','Liquidity shock','International shock','Monetary shock','Location','SouthOutside','Orientation','horizontal','Box','off')
     title(var_list_name{i})
     exportgraphics(gcf,filename)
 end
-close all;
+
 %% SOE: friction
 Model = {'Benchmark no CBDC','Benchmark with CBDC',...
          'Dollarization no CBDC','Dollarization with CBDC'};
 
-T = 0:100;
+T = 0:20;
 filename = 'TFP.png';
 
 figure('position',[10,10,1000,500])
@@ -128,14 +150,14 @@ for n = 1:N
     plot(T,C1_EPS_A(n,T+1),'LineWidth',1); 
     hold on; 
 end
-title('Consumption (non RT)')
+title('Consumption (unconstrained)')
 
 subplot(2,4,3);
 for n = 1:N
     plot(T,C2_EPS_A(n,T+1),'LineWidth',1); 
     hold on; 
 end
-title('Consumption (RT)')
+title('Consumption (constrained)')
 
 
 subplot(2,4,4);
@@ -176,7 +198,7 @@ title('CBDC')
 exportgraphics(gcf,filename)
 
 % ===============================================
-T = 0:10;
+T = 0:6;
 filename = 'Monetary.png';
 
 figure('position',[10,10,1000,500])
@@ -195,14 +217,14 @@ for n = 1:N
     plot(T,C1_EPS_M(n,T+1),'LineWidth',1); 
     hold on; 
 end
-title('Consumption (non RT)')
+title('Consumption (unconstrained)')
 
 subplot(2,4,3);
 for n = 1:N
     plot(T,C2_EPS_M(n,T+1),'LineWidth',1); 
     hold on; 
 end
-title('Consumption (RT)')
+title('Consumption (constrained)')
 
 subplot(2,4,4);
 for n = 1:N
@@ -243,7 +265,7 @@ title('CBDC')
 exportgraphics(gcf,filename)
 
 % ===============================================
-T = 0:100;
+T = 0:6;
 filename = 'Liquidity.png';
 
 figure('position',[10,10,1000,500])
@@ -262,14 +284,14 @@ for n = 1:N
     plot(T,C1_EPS_Z(n,T+1),'LineWidth',1); 
     hold on; 
 end
-title('Consumption (non RT)')
+title('Consumption (unconstrained)')
 
 subplot(2,4,3);
 for n = 1:N
     plot(T,C2_EPS_Z(n,T+1),'LineWidth',1); 
     hold on; 
 end
-title('Consumption (RT)')
+title('Consumption (constrained)')
 
 subplot(2,4,4);
 for n = 1:N

@@ -43,7 +43,14 @@ The real exchange rate is defined as the ratio of the foreign and domestic price
 \begin{align*}
 s_t = e_t \frac{p_t^*}{p_t}
 \end{align*}
-Here I also assume that foreign CPI is constant over time: $\pi^* = 1$.
+Define $p_{Ht} = P_{Ht}/p_t$ and  $p_{Ft} = P_{Ft}/p_t$ as the price of domestic and foreign goods in terms of the domestic CPI, then the real exchange rate can be written as: 
+\begin{align*}
+s_t = p_{Ft}, 
+\end{align*}
+and the terms of trade, i.e., the ratio between the price imports and the price exports can be written as 
+\begin{align*}
+tot_t = \frac{P_{Ft}}{P_{Ht}} = \frac{s_t}{p_{Ht}}
+\end{align*}
 
 \subsubsection*{Unconstrained HH ($1-\lambda$)} 
 Unconstrained households with measure $1-\lambda$ have access to the bank service. Each period, they choose their consumption $c_{1t}$ and labor supply $h_{1t}$ and receive labor income $\omega_t$. Unconstrained households pay consumption tax at the rate $\tau_c$. They also receive a lump-sum transfer from the government $t_{1t}$ and profit of intermediate firms and banks $\Gamma_{1t}$.
@@ -163,46 +170,83 @@ c_{2t}^{-\sigma} &= \lambda_{2t}(1+s_{2t}+\tau_{2t}^c+\tau_c\frac{CBDC_{2t}}{l_{
 The no-arbitrage condition for cash and CBDC can be derived from equations (\ref{m2}) and (\ref{CBDC2}).
 
 \subsection{Bank}
-There is a continuum measure of monopolistic competitive banks $j \in [0,1]$. They take deposit from unconstrained households $d_{t}(j)$ and invest in intermediate firms ($i_t(j)$) and accumulate capital stock ($k_t(j)$). The deposit demand functions are solved from the household problem above. 
+There is a continuum measure of monopolistic competitive banks $j \in [0,1]$. They take deposit from unconstrained households $d_{t}(j)$ and invest in intermediate firms $i_t(j)$ and accumulate capital stock $k_t(j)$. The deposit demand functions are solved from the household problem above. 
 \begin{align*}
 d_{t}(j) = \Biggl(\frac{(r_t-r_t^d(j))^{-\epsilon_b}}{\big(\int_0^1(r_t-r_t^d(j))^{1-\epsilon_b}dj\big)^{-\frac{\epsilon_b}{1-\epsilon_b}}}\Biggl)d_{t} 
 \end{align*}
 
-Banks are owned by unconstrained households, so bankers solve the following optimization problem: 
+Banks are owned by unconstrained households, so bankers maximize its expected pre-dividend profits: 
 \begin{align*}
- &\max_{r_t^d(j),i_t(j),k_t(j)}E_0 \sum_0^{\infty}\beta^t\frac{\lambda_{1t}}{\lambda_{10}}(r_t^kk_{t-1}(j)-i_t(j)+(d_{Ht}(j)-\frac{r_{t-1}^d(j)}{\pi_t}d_{t-1}(j)),
+ &\max_{r_t^d(j),i_t(j),k_t(j)}E_0 \sum_0^{\infty}\beta^t\frac{\lambda_{1t}}{\lambda_{10}}(r_t^kk_{t-1}(j)-i_t(j)+(d_{t}(j)-\frac{r_{t-1}^d(j)}{\pi_t}d_{t-1}(j)),
  \end{align*}
 subject to the law of motion of capital and balance sheet constraint: 
  \begin{align*}
   \quad & k_t(j) = (1-\delta)k_{t-1}(j)+(1-\frac{\kappa_I}{2}(\frac{i_t(j)}{i_{t-1}(j)}-1))i_t(j), \\
 & k_t(j) = d_{t}(j).
 \end{align*}
-The equilibrium is symmetric, and the optimal deposit rate chosen by the bank is 
+
+The equilibrium is symmetric, then the first-order conditions give the supply for new investment 
 \begin{align*}
-{r_{t}^d}^* &= \frac{\epsilon_b}{\epsilon_b-1}\frac{\beta E_t \lambda_{1t+1}(r_{t+1}^k+(1-\delta)q_{t+1})-(q_t-1)\lambda_{1t}}{\beta E_t (\lambda_{1t+1}/\pi_{t+1})}-\frac{1}{\epsilon_b-1}r_t 
+\lambda_{1t} = q_t\lambda_{1t}(1-\frac{\kappa_I}{2}(\frac{i_t}{i_{t-1}}-1)^2-\kappa_I(\frac{i_t}{i_{t-1}}-1)\frac{i_t}{i_{t-1}})+ \beta\E_tq_{t+1}\lambda_{1t+1}\kappa_I(\frac{i_{t+1}}{i_t}-1)^2(\frac{i_{t+1}}{i_t})^2,
 \end{align*}
-When $\epsilon_b \to \infty$, then banks are perfectly competitive, and the equilibrium will be consistent with the standard TANK model. 
-There exist $\bar{r}_t^d$ such that the profit of banks is zero. If ${r_t^d}^*<r_t^m<\bar{r}_t^d$, banks will have to set the deposit rate at $r_t^m$, or the household will choose to hold CBDC. If $r_t^m>\bar{r}_t^d$, then CBDC crowds out the bank sector. 
+and optimal deposit rate chosen by the bank:  
+\begin{align*}
+{r_{t}^d}^* &= \frac{\epsilon_b}{\epsilon_b-1}\frac{\beta E_t \lambda_{1t+1}(r_{t+1}^k+(1-\delta)q_{t+1})-(q_t-1)\lambda_{1t}}{\beta E_t (\lambda_{1t+1}/\pi_{t+1})}-\frac{1}{\epsilon_b-1}r_t.
+\end{align*}
+When $\epsilon_b \to \infty$, then banks are perfectly competitive, then the deposit rate chosen by the bank becomes the net return to capital: 
+\begin{align*}
+{r_{t}^d}^* &= \frac{\beta E_t \lambda_{1t+1}(r_{t+1}^k+(1-\delta)q_{t+1})-(q_t-1)\lambda_{1t}}{\beta E_t (\lambda_{1t+1}/\pi_{t+1})}.
+\end{align*}
 
 \subsection{Firm}
-The firm problem is standard. 
+The firm problem is standard. The representative final-good firm uses the following CES aggregator to produce the domestic final good, and the intermediate firms produce differentiated domestic input. 
 
 \subsubsection*{Final}
+The representative final-good firm uses the following CES aggregator to produce the domestic final good $y_{Ht}$:
 \begin{align*}
-y_t = (\int y_t(i)^{\frac{\epsilon}{\epsilon-1}})^{\frac{\epsilon-1}{\epsilon}}
+y_{Ht} = (\int_0^1 y_{Ht}(i)^{\frac{\epsilon}{\epsilon-1}})^{\frac{\epsilon-1}{\epsilon}}
+\end{align*}
+where $y_{Ht}(i)$ is an intermediate input produced by the intermediate firm $i$, whose price is $P_{Ht}(i)$. The final good firm maximizes the profit: 
+\begin{align*}
+\max_{y_{Ht},y_{Ht}(i)}\quad P_{Ht}(\int_0^1 y_{Ht}(i)^{\frac{\epsilon}{\epsilon-1}})^{\frac{\epsilon-1}{\epsilon}}- \int_0^1 P_{Ht}(i)y_{Ht}(i)
+\end{align*}
+Then the first order conditions give the demand for intermediate goods: 
+\begin{align*}
+y_{Ht}(i) = y_{Ht}\Big(\frac{P_{Ht}(i)}{P_{Ht}}\Big)^{-\epsilon}
 \end{align*}
 
 \subsubsection*{Intermediate}
+There is a continuum of firms indexed by $i$ producing a differentiated domestic input using the following Cobb-Douglas function:
 \begin{align*}
-\max_{p_t(i),k_{t-1}(i), h_t(i)} &E_0 \sum_0^{\infty}\beta^t\frac{\lambda_t}{\lambda_0}((\frac{p_t(i)}{P_t})^{1-\epsilon})y_t-w_th_t(i)-r_t^kk_{t-1}(i)-\frac{\kappa_P}{2}(\frac{p_t(i)}{p_{t-1}(i)})^2y_t) \\
-\text{s.t.} \quad & (\frac{p_t(i)}{P_t})^{-\epsilon})y_t = a_tk_{t-1}(i)^{\alpha}h_t(i)^{1-\alpha}
+y_{Ht}(i) = a_t(k_{t-1}(i))^{\alpha}(h_t(i))^{1-\alpha}
+\end{align*}
+where $a_t$ is the total factor productivity, which follows an autoregressive process: 
+\begin{align*}
+\log(a_t) = (1-\rho_a)\log(\bar{a})+\rho_a\log(a_{t-1})+\nu_t^a, \quad  \nu_t^a \sim N(0,\sigma_a^2)
+\end{align*}
+Firms operate in monopolistic competition, so they set the price of their own good subject to the demand of final good firms. In addition, firms pay quadratic adjustment cost $AC_t(i)$ in nominal terms as in Rotemberg (1982), whenever they adjust prices with respect to the benchmark inflation rate $\bar{\pi}$:
+\begin{align*}
+AC_t(i) = \frac{\kappa_P}{2}\Big(\frac{P_{Ht}(i)}{P_{Ht-1}(i)}-\bar{\pi}\Big)^2P_{Ht}y_{Ht}
+\end{align*}
+The intermediate firm is owned by unconstrained households and maximizes the profit: 
+\begin{align*}
+\max_{P_{Ht}(i),y_{Ht}(i),k_{t-1}(i), h_t(i)} &E_0 \sum_0^{\infty}\beta^t\frac{\lambda_{1t}}{\lambda_{10}}(\frac{P_{Ht}(i)}{p_t}y_{Ht}(i)-w_th_t(i)-r_t^kk_{t-1}(i)-\frac{AC_t(i)}{p_t}),
+\end{align*}
+subject to the production and demand function: 
+\begin{align*}
+y_{Ht}(i) &= a_t(k_{t-1}(i))^{\alpha}(h_t(i))^{1-\alpha}, \\
+y_{Ht}(i) &= y_{Ht}\Big(\frac{P_{Ht}(i)}{P_{Ht}}\Big)^{-\epsilon}.
 \end{align*}
 
-The equilibrium is symmetric, and the equilibrium markup and inflation can be written as:
+The equilibrium is symmetric, the equilibrium interest rate and wage can be solved as: 
 \begin{align*}
-\frac{\epsilon}{\kappa_P}(mc_t-\frac{\epsilon-1}{\epsilon}) = (\pi_t-\bar{\pi})\pi_t-\beta E_t \frac{\lambda_{t+1}}{\lambda_{t}} (\pi_{t+1}-\bar{\pi})\pi_{t+1}\frac{y_{t+1}}{y_t}
+r_t^k &= \alpha mc_t \frac{y_{Ht}}{k_{t-1}}, \\
+\omega_t &= (1-\alpha) mc_t \frac{y_{Ht}}{h_t}.
 \end{align*}
-
+The marginal cost $mc_t$ is defined by reranging the price condition: 
+\begin{align*}
+\frac{\epsilon}{\kappa_P}(\frac{mc_t}{p_{Ht}}-\frac{\epsilon-1}{\epsilon}) = (\pi_{Ht}-\bar{\pi})\pi_t-\beta E_t \frac{\lambda_{1t+1}}{\lambda_{1t}} (\pi_{Ht+1}-\bar{\pi})\pi_{Ht+1}\frac{y_{Ht+1}}{y_{Ht}}
+\end{align*}
 \subsection{Policy}
 The government finances public expenditure $g_t$ by raising lump-sum taxes and public debt:
 \begin{align*}
@@ -214,6 +258,20 @@ The central bank sets interest rate following the Taylor rule:
 \frac{r_t}{\bar{r}} = (\frac{r_{t+1}}{\bar{r}})^{\rho_r}((\frac{\pi_t}{\bar{\pi}} )^{\phi_{\pi}} (\frac{p_{Ht}y_{Ht}}{\bar{p_Hy_H}})^{\phi_y} (\frac{\Delta e_t}{\bar{\Delta e}})^{\phi_e})^{1-\rho_r}exp(\nu_t^m)
 \end{align*}
 
+\subsection{Foreign Sector}
+Given that the domestic economy is sufficiently small relatively to the foreign economy, the foreign sector is treated as endogenously given. The foreign output $y_t^*$ and interest rate $r_t^*$ follow the autoregressive processes: 
+\begin{align*}
+\log(y_t^*) &= \rho_y\log(y_{t-1}^*)+\nu_t^y \\
+r_t^*&= (1-\rho_r)\frac{1}{\beta}+\rho_rr_{t-1}^*+\nu_t^r 
+\end{align*}
+The foreign CPI is assumed to be constant over time:
+\begin{align*}
+\pi^* = \frac{p_t^*}{p_{t-1}^*} = 1
+\end{align*}
+Given the home bias $\gamma^*$ of the foreign countr, the demand for domestic good of foreign sector is 
+\begin{align*}
+\gamma^*\Big(\frac{p_{Ht}}{s_t}\Big)^{-\eta}y_t^*
+\end{align*}
 \section{Model with Dollarization}
 In this section, I extend the model so that deposits and cash can be indexed by domestic or foreign currency. CBDC can only be indexed by domestic currency. 
 \subsection{Households}
@@ -259,8 +317,8 @@ d_{1Ft} &= \int_0^1({d_{1Ft}(j)}^{\frac{\epsilon_b-1}{\epsilon_b}}dj)^{\frac{\ep
 \end{align*}
 Similar to the case without dollarization, the demand function for $d_{1Ht}(j)$  and $d_{1Ft}(j)$ can be derived as:
 \begin{align*}
-d_{1Ht}(j) &= \Biggl(\frac{(r_t-r_t^d(j))^{-\epsilon_b}}{\big(\int_0^1(r_t-r_t^d(j))^{1-\epsilon_b}dj\big)^{-\frac{\epsilon_b}{1-\epsilon_b}}}\Biggl)d_{1Ht} \\
-d_{1Ft}(j) &= \Biggl(\frac{(\frac{r_t^*}{1+\tau_{Bt}}-\frac{r_t^d(j)}{1+\tau_{Dt}})^{-\epsilon_b}}{\big(\int_0^1(\frac{r_t^*}{1+\tau_{Bt}}-\frac{r_t^d(j)}{1+\tau_{Dt}})^{1-\epsilon_b}dj\big)^{-\frac{\epsilon_b}{1-\epsilon_b}}}\Biggl)d_{1Ht}
+d_{1Ht}(j) &= \Biggl(\frac{(r_t-r_{Ht}^d(j))^{-\epsilon_b}}{\big(\int_0^1(r_t-r_{Ht}^d(j))^{1-\epsilon_b}dj\big)^{-\frac{\epsilon_b}{1-\epsilon_b}}}\Biggl)d_{1Ht} \\
+d_{1Ft}(j) &= \Biggl(\frac{(\frac{r_t^*}{1+\tau_{Bt}}-\frac{r_{Ft}^d(j)}{1+\tau_{Dt}})^{-\epsilon_b}}{\big(\int_0^1(\frac{r_t^*}{1+\tau_{Bt}}-\frac{r_{Ft}^d(j)}{1+\tau_{Dt}})^{1-\epsilon_b}dj\big)^{-\frac{\epsilon_b}{1-\epsilon_b}}}\Biggl)d_{1Ht}
 \end{align*}
 where $\tau_{Bt}$ and $\tau_{Dt}$ are wedges due to the quadratic adjustment costs: 
 \begin{align*}
@@ -283,7 +341,7 @@ subject to the budget and liquidity constraints:
 \begin{align*} 
 \text{s.t.} \quad & (1+s_{2t}+\tau_c\frac{CBDC_{2t}}{l_{2t}})c_{2t}+(m_{2Ht}-\frac{1-\delta_m}{\pi_t}m_{2Ht-1})+s_t(m_{2Ft}-m_{2Ft-1})\\
 &+(CBDC_{2t}-\frac{r_{t-1}^{CBDC}}{\pi_t}CBDC_{2t-1})  \leq w_th_{2t}+t_{2t}-\frac{\kappa_M}{2}s_t(\lambda m_{2Ft}-\bar{m}_F)^2  \quad (\lambda_{2t})\\
-&l_{2t} = ((m_{2Ht})^{\frac{\epsilon_m-1}{\epsilon_m}}+(s_t m_{2Ft})^{\frac{\epsilon_m-1}{\epsilon_m}}+(CBDC_{2t})^{\frac{\epsilon_m-1}{\epsilon_m}})^{\frac{\epsilon_m}{\epsilon_m-1}} \\
+&l_{2t} = ((m_{2Ht})^{\frac{\epsilon_m-1}{\epsilon_m}}+(s_t m_{2Ft})^{\frac{\epsilon_m-1}{\epsilon_m}}+(CBDC_{2t})^{\frac{\epsilon_m-1}{\epsilon_m}})^{\frac{\epsilon_m}{\epsilon_m-1}} \quad (\tau_{2t}\lambda_{2t}) \\
 & s_{2t} = z_tA_2\frac{c_{2t}}{l_{2t}}+B_2\frac{l_{2t}}{c_{2t}}-2\sqrt{A_2B_2} \quad (\mu_{2t}\lambda_{2t})
 \end{align*}
 Taking first order conditions with respect to $c_{2t}, h_{2t}, s_{2t}, l_{2t}, m_{2Ht}, m_{2Ft}, CBDC_{2t}$: 
@@ -324,122 +382,205 @@ The equilibrium is symmetric and the optimal deposit rate chosen by bank is
 
 \clearpage
 \section{Calibration}
-\begin{table}[h!]
-\begin{tabular}{lll}
-\hline\hline
-Parameter        & value       & Description                 \\\hline
-\multicolumn{3}{l}{Household}                                                                     \\
-$\lambda$        & 0.05       & Share of rule-of-thumb household                                  \\
-$\beta$          & 0.997      & Discount factor                                                   \\
-$\sigma$         & 2          & Intertemporal elasticity of substitution                          \\
-$\chi$           & 3.4        & Leisure weight                                                    \\
-$\phi$           & 1          & Frisch elasticity                                                 \\
-$A_1$             & 0          & Transaction cost (no RT)           	     \\
-$B_1$              & 0    & Transaction cost (no RT)                    	 \\
-$A_2$             & 1          & Transaction cost (RT)                                       \\
-$B_2$              & 0.5      & Transaction cost (RT)  	   \\
-$\delta_m$ & 0.01 & Cost of carrying cash \\
-$\epsilon_m$              & 2      & Cash CBDC elasticity of substitution        \\\hline
-\multicolumn{3}{l}{Firm}                                                                     		\\
-$\alpha$         & 0.33       & Capital share                                                     \\
-$\kappa_P$       & 2          & Price adjustment cost                                             \\
-$\epsilon$       & 4          & Intermediate-good elasticity of substitution                      \\\hline
-\multicolumn{3}{l}{Bank}                                                                     		\\
-$\delta$         & 0.025      & Depreciation rate                                                 \\
-$\kappa_I$       & 5.46       & Investment adjustment cost                                        \\
-$\epsilon_b$     & 3          & Bank elasticity of substitution                                   \\\hline
-\multicolumn{3}{l}{Central bank}                                                                     		\\
-$\rho_r$         & 0.5        & Taylor rule: interest rate elasticity                                                        \\
-$\phi_{\pi}$        & 10         & Taylor rule: inflation elasticity                                                       \\
-$\phi_y$         & 10         & Taylor rule: output elasticity                                                      \\
-$\phi_e$         & 2          & Taylor rule: exchange rate elasticity                                                       \\
-$\bar{r}$         & 1.02/0.997 & Taylor rule: interest rate target                                                      \\
-$\bar{\pi}$        & 1.02       & Taylor rule: inflation target                                                       \\
-$\overline{\Delta e}$         & 1.02       & Taylor rule: exchange rate target                                               \\
-$\Delta_m$       & 0.2        & CBDC spread                                                       \\\hline
-\multicolumn{3}{l}{Shocks}                                                                     		\\
-$\rho_a$         & 0.96       & TFP shock autocorrelation                                         \\
-$\rho_z$         & 0.95       & Money demand shock autocorrelation                                \\
-$\sigma_a$      & 0.015      & Standard deviation of TFP shock innovation                        \\
-$\sigma_z$      & 0.01       & Standard deviation of money demand shock innovation               \\
-$\sigma_m$      & 0.25       & Standard deviation of monetary policy shock innovation         \\\hline  
-\end{tabular}
-\caption{Calibration}
-\end{table}
-
 
 \begin{table}[h!]
-\begin{tabular}{lll}
+\centering
+\begin{tabular}{llll}
 \hline\hline
-Parameter        & value       & Description                                  \\ \hline
-\multicolumn{3}{l}{Open economy}                                                            \\
-$\eta$           & 2          & Domestic and foreign good elasticity of substitution              \\
-$\gamma$         & 0.9        & Domestic home bias                                                \\
-$\gamma^*$    & 0.1        & Foreign home bias                                                 \\
-$\kappa_B$       & 5          & Foreign bond adjustment cost                                      \\
-$\bar{B}_F$        & 0.5        & Steady state foreign bond level                                               \\
-$\bar{y}^*$    & 1          & Foreign output                                                    \\
-$\bar{r}^*$    & $1/\beta$     & Foreign bond interest rate                                        \\
-$\rho_{y^*}$    & 0.95       & Foreign TPF shock autocorrelation                                 \\
-$\rho_{r^*}$    & 0.99       & Foreign bond interest rate shock autocorrelation                  \\
-$\sigma_{y^*}$ & 0.01       & Standard deviation of foreign TFP shock innovation                \\
-$\sigma_{r^*}$& 0.01       & Standard deviation of foreign bond interest rate shock innovation \\\hline
-\multicolumn{3}{l}{Dollarization}                                                            \\
-$\kappa_D$       & 3          & Foreign deposit adjustment cost                                   \\
-$\kappa_M$       & 3          & Foreign currency adjustment cost                                  \\
-$\bar{D}_f$        & 0.5        & Steady state foreign deposit level                                                \\
-$\bar{M}_f$       & 0.05       & Steady state foreign currency level                                                \\\hline
+ & Description & Value & Reference \\ \hline
+\multicolumn{4}{l}{\bf Household}     \\
+$\beta$    & Discount factor       & 0.990  & Gertler and Karadi (2011)                   					 \\
+$\sigma$     & Intertemporal elasticity of substitution     & 2      \\
+$\chi$       & Leisure weight     & 1  & Gali and Monacelli (2015)                                    \\
+$\phi$        & Frisch elasticity      & 3     & Gali and Monacelli (2015)                                 \\
+$A_1$      & Transaction cost (unconstraint)   & 0              	     \\
+$B_1$     & Transaction cost (unconstraint)   & 0                   	 \\
+\multicolumn{4}{l}{\bf Firm}     \\
+$\alpha$     & Capital share    & 0.33        &  Gertler and Karadi (2011)                       			\\
+$\kappa_P$     & Price adjustment cost   & 2                                                      \\
+$\epsilon$       & Intermediate-good elasticity of substitution  & 6  &   Gali and Monacelli (2015)       \\
+$\delta$       & Capital depreciation rate        & 0.025   & Gertler and Karadi (2011)                                             \\
+\multicolumn{4}{l}{\bf Bank}     \\
+$\kappa_I$         & Investment adjustment cost        & 1.728       & Gertler and Karadi (2011)                            \\
+$\epsilon_b$      & Bank elasticity of substitution    & $\infty$                                     \\
+\multicolumn{4}{l}{\bf Open Economy}     \\     
+$\eta$      & Domestic and foreign good ES     & 2                        \\
+$\gamma$     & Domestic home bias           & 0.9                                                 \\
+$\gamma^*$  & Foreign home bias              & 0.1                                             \\
+$\bar{y}^*$  & Foreign output    & 1                                                            \\
+$\bar{r}^*$   & Foreign bond interest rate           & $1/\beta$                                   \\
+$\rho_{y^*}$  & $y^*$ autocorrelation  & 0.6031   &       George et al. (2020)                                \\
+$\rho_{r^*}$   & $r^*$ autocorrelation  & 0.5374     &       George et al. (2020)                                \\
+$\sigma_{y^*}$  & Standard deviation of $y^*$ innovation   & 0.0788    &       George et al. (2020)                                \\
+$\sigma_{r^*}$  & Standard deviation of $r^*$ innovation & 0.0799    &       George et al. (2020)                                \\\hline
 \end{tabular}
-\caption{Calibration (continued)}
+\caption{Parameters directly calibrated from literature}
 \end{table}
 
+\begin{table}[h!]
+\centering
+\begin{tabular}{lllll}
+\hline\hline
+& Description & Value & Implied steady state & Value \\\hline
+\multicolumn{5}{l}{\bf Household}     \\
+$\lambda$  & Share of constrained households  & 20\%  & Share of unbanked households & 20\%  \\
+$\delta_m$ & Cost of carrying cash & 0.2 & Time spent on getting cash \\
+$\epsilon_m$ & Cash-CBDC elasticity of substitution &  2 & CBDC adoption rate \\
+$A_2$      & Transaction cost (constraint)   & 0.9     & Money velocity     	     \\
+$B_2$     & Transaction cost (constraint)   & 0.7      & Money velocity           \\
+\multicolumn{5}{l}{\bf Government}     \\
+$\bar{r}$     & Taylor rule: interest rate target            & $\bar{\pi}/\beta$    & Nominal interest rate &      	 \\
+$\bar{\pi}$     & Taylor rule: inflation target       & 1.03        & Inflation rate & 3\%                        				 \\
+$\overline{\Delta e}$    & Taylor rule: real exchange rate target       & 1.03   & Exchange rate & 1    			  \\
+$\tau_C$ & Consumption tax & 0.12 &  \\
+$\bar{B}$ & Government bond & 2 & National debt/GDP & 100\% \\
+$\bar{G}$ & Government purchase & 0.3 & Government purchase/GDP & 15\% \\
+\multicolumn{5}{l}{\bf Open economy}                                                            \\
+$\bar{B}_F$       & Steady state foreign bond level    & 0.05     & Financial account balance/GDP &      0.05              \\
+$\kappa_B$     & Foreign bond adjustment cost    & 5       & Financial account volatility &                                       \\
+$\bar{D}_f$       & Steady state foreign deposit level   & 0.5  \\
+$\kappa_D$      & Foreign deposit adjustment cost     & 3                                         \\
+$\bar{M}_f$      & Steady state foreign currency level     & 0.05  &  Dollar/GDP     \\
+$\kappa_M$     & Foreign currency adjustment cost     & 3                                         \\      \hline                                    
+\end{tabular}
+\caption{Parameters with implied steady state implications}
+\end{table}
 
+\begin{table}[h!]
+\centering
+\begin{tabular}{lll}
+\hline\hline
+& Description & Value \\\hline
+\multicolumn{3}{l}{\bf Shocks}     \\                                                              
+$\rho_a$      & $a$ autocorrelation    & 0.8552            \\
+$\rho_z$       & $z$ autocorrelation     & 0.7217   	    \\
+$\rho_g$     & $g$ autocorrelation & 0.8 \\
+$\sigma_a$     & Standard deviation of $a$ shock innovation        & 0.0711   \\
+$\sigma_z$     & Standard deviation of $z$ innovation   & 0.0694      \\
+$\sigma_g$     &  Standard deviation of $g$  innovation & 0.05 \\
+$\sigma_m$     & Standard deviation of $m$ innovation   & 0.25              \\
+\multicolumn{3}{l}{\bf Taylor Rule}     \\ 
+$\rho_r$     & Interest rate elasticity    & 0.5      	 \\
+$\phi_{\pi}$    & Inflation elasticity       & 10       	\\
+$\phi_y$       & Output elasticity           & 10     	\\
+$\phi_e$       & Exchange rate elasticity          & 2      	\\\hline
+\end{tabular}
+\caption{Estimation}
+\end{table}
 
 \clearpage
 
 \section{Welfare analysis}
-Dollarization provides additional liquidity service to constrained households. It increases the welfare of constrained households but decreases the welfare of unconstrained households. 
+Table \ref{Welfare1} shows the welfare change if the economy is dollarized. The constrained households can use dollar as an alternative payment method; unconstrained households can choose to index their deposit using dollar. The steady state of economy with and without dollarization is presented in the first and third column of Table \ref{SS}. Dollarization provides additional liquidity service to constrained households. It increases the welfare of constrained households by decreasing the transaction cost and cost of carrying the domestic cash. However, it decreases the welfare of unconstrained households for two reasons:  (1) constrained households decrease labor supply, they have better way to smooth the consumption; (2) real exchange rate is higher, the dead-weight loss caused by carrying cash is lower. Dollarization decreases the overall social welfare, and decreases the tax collected by the government. 
 \begin{table}[h!]
 \centering
 \begin{tabular}{lccc}
 \hline\hline
 Welfare change & Social  & Unconstrained & Constrained  \\\hline
-Dollarization &  -0.0232 &  -0.0361  &  0.0125 \\\hline        
+Dollarization &  -0.0039  & -0.0098  &  0.0119 \\\hline        
 \end{tabular}
 \caption{Welfare change by adding dollarization}
+\label{Welfare1}
 \end{table}
 
-CBDC increases welfare of constrained households, mainly by reducing transaction cost and promoting financial inclusion. However, CBDC is not Pareto improving, the welfare of unconstrained households is lower with CBDC. There are two reasons: (1) constrained households decrease labor supply; (2) real exchange rate is lower. 
+Table \ref{Welfare2} shows the welfare change if the CBDC is introduces. CBDC increases welfare of constrained households by decreasing the transaction cost and cost of carrying the domestic cash. The steady state of economy with and without CBDC is presented in Table \ref{SS}. Introduction of CBDC decreases the use of dollar, even though the constrained households can avoid paying tax by using dollar. 
+
+However, CBDC is not Pareto improving, the welfare of unconstrained households decreases when CBDC is introduced for two reasons:   (1) constrained households decrease labor supply, they have better way to smooth the consumption; (2) real exchange rate is higher, the dead-weight loss caused by carrying cash is lower. Unlike dollarization, CBDC increases the overall social welfare, because CBDC does not increase the real exchange rate as much as dollarizaiton. CBDC increases the government revenue in both scenarios, since the government can collect more consumption tax from constraint households. 
+
+The welfare gain of CBDC is more significant when the economy is dollarized. The introduction of CBDC encourages the constraint households to use cbdc instead of dollar, and does not drive up much the real exchange rate. 
 
 \begin{table}[h!]
 \centering
 \begin{tabular}{lccc}
 \hline\hline
 Welfare change & Social & Unconstrained & Constrained  \\ \hline
-TANK &   -0.0280  & -0.0501  &  0.0350 \\
-TANK with dollarization &  -0.0058 &  -0.0158   & 0.0227 \\\hline
+TANK &    0.0012 &  -0.0127   & 0.0400 \\
+TANK with dollarization & 0.0043 &  -0.0046  &  0.0293\\\hline
 \end{tabular}
 \caption{Welfare change by introducing CBDC}
+\label{Welfare2}
 \end{table}
 
-
+\begin{table}[h!]
+\centering
+\begin{tabular}{lllll}
+\hline\hline
+                 &\multicolumn{2}{c}{TANK}  &\multicolumn{2}{c}{Dollarization}  \\
+                 &  no CBCD & CBDC & no CBCD &  CBDC  \\\hline
+Consumption                 & 1.5209  & 1.5171  & 1.5146  & 1.5169  \\
+Labor                       & 0.8397  & 0.8423  & 0.8434  & 0.8436  \\
+Capital                     & 17.6862 & 17.6383 & 17.652  & 17.6454 \\
+Investment                  & 0.4422  & 0.441   & 0.4413  & 0.4411  \\
+Domestic output             & 2.2956  & 2.2982  & 2.3008  & 2.3008  \\
+Consumption (unconstrained) & 1.6099  & 1.592   & 1.5956  & 1.5896  \\
+Labor (unconstrained)       & 0.8026  & 0.8071  & 0.8057  & 0.8076  \\
+Deposit                     & 22.1077 & 22.0479 & 18.9767 & 18.9543 \\
+Deposit indexed in dollar   & 0       & 0       & 2.5     & 2.5     \\
+Consumption (constrained)   & 1.1648  & 1.2177  & 1.1904  & 1.2261  \\
+Labor (constrained)         & 0.9882  & 0.983   & 0.9939  & 0.9873  \\
+Cash                        & 1.2094  & 0.2044  & 0.2936  & 0.0539  \\
+Dollar                      & 0       & 0       & 0.286   & 0.1556  \\
+CBDC                        & 0       & 0.5149  & 0       & 0.2544  \\
+Transaction cost            & 0.0062  & 0.0001  & 0.0016  & 0       \\
+Cost of cash                & 0.1209  & 0.0204  & 0.0294  & 0.0054  \\
+Return to capital           & 0.0351  & 0.0351  & 0.0351  & 0.0351  \\
+Wage                        & 1.5009  & 1.4924  & 1.4916  & 1.4907  \\
+Domestic price              & 0.9834  & 0.9796  & 0.9793  & 0.9789  \\
+Real exchange rate          & 1.1794  & 1.2306  & 1.2353  & 1.241   \\
+Tax revenue                       & 0.1546  & 0.1638  & 0.1532  & 0.158  \\\hline
+\end{tabular}
+\caption{Steady State Comparison}
+\label{SS}
+\end{table}
+      
+    
+    
 \clearpage
 \section{Variance Decomposition}
-The consumption fluctuation of unconstrained households is mainly contributed by TFP shocks, while consumption fluctuation of constrained households is mainly contributed by monetary policy shocks. Introduction of CBDC increases the contribution of monetary policy to the variance of output and consumption. The terms of trade is more affected by international shock when CBDC is introduced. 
+Table \ref{variance} presents the variance decomposition of the benchmark TANK model. The consumption fluctuation of unconstrained households is mainly contributed to TFP shocks, while consumption fluctuation of constrained households is affected more by liquidity and monetary shocks. The terms of trade is heavily affected by the foreign and liquidity shocks.
+\begin{table}[h!]
+\centering 
+\scriptsize
+\begin{tabular}{lcccccc}
+\hline \hline
+                                    & TFP     & Liquidity & Government  & Foreign & Foreign & Monetary \\
+                                    &     &  & purchase &  output & interest rate &  \\\hline
+Output                              & 99.5302 & 0.107     & 0.146               & 0.1242         & 0.0144                & 0.0782   \\
+Consumption                         & 97.1785 & 0.0727    & 0.6536              & 0.0626         & 1.689                 & 0.3436   \\
+Consumption (unconstrained)         & 96.4506 & 0.7959    & 0.4696              & 0.0302         & 2.2055                & 0.0482   \\
+Consumption (constrained)           & 78.048  & 13.3943   & 0.5948              & 0.1164         & 1.7648                & 6.0818   \\
+Interest rate                       & 92.7347 & 0.4711    & 0.0351              & 0.0957         & 6.6165                & 0.0467   \\
+Deposit rate & 92.7347 & 0.4711    & 0.0351              & 0.0957         & 6.6165                & 0.0467   \\
+Wage                                & 93.7315 & 0.3035    & 0.0122              & 0.2996         & 0.793                 & 4.8603   \\
+Domestic inflation                  & 72.6332 & 0.3543    & 0.0428              & 0.348          & 0.417                 & 26.2047  \\
+CPI inflation'                      & 71.7943 & 0.1351    & 0.044               & 0.1251         & 0.0975                & 27.8041  \\
+TOT                                 & 37.1678 & 19.4927   & 0.2459              & 16.6456        & 26.2003               & 0.2476   \\
+Deposit                             & 98.6431 & 0.6531    & 0.3532              & 0.025          & 0.3054                & 0.0202   \\
+Cash                                & 89.7188 & 0.0853    & 0.3873              & 0.1375         & 2.3772                & 7.2938   \\\hline
+\end{tabular}
+\caption{Variance decomposition of TANK model}
+\label{variance}
+\end{table}
+
+Introduction of CBDC affects mainly the variance decomposition of consumption of constrained households. The monetary policy affects more the unconstrained households after CBDC is introduced. 
 
 \begin{figure}[h!]
-\includegraphics[width=0.8\textwidth]{log_y}
-\end{figure}
-
-\begin{figure}[h!]
-\includegraphics[width=0.8\textwidth]{log_c1}
-\end{figure}
-
-\begin{figure}[h!]
+\centering
 \includegraphics[width=0.8\textwidth]{log_c2}
 \end{figure}
 
 \begin{figure}[h!]
+\centering
+\includegraphics[width=0.8\textwidth]{log_d1}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.8\textwidth]{log_m2}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
 \includegraphics[width=0.8\textwidth]{log_tot}
 \end{figure}
 

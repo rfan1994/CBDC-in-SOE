@@ -1,5 +1,5 @@
 function [residual, g1, g2, g3] = dynamic(y, x, params, steady_state, it_)
-    T = NaN(43, 1);
+    T = NaN(54, 1);
     if nargout <= 1
         residual = TANK_SOE_Dollarization_CBDC.dynamic_resid(T, y, x, params, steady_state, it_, true);
     elseif nargout == 2

@@ -13,7 +13,7 @@ function T = static_resid_tt(T, y, x, params)
 %   T         [#temp variables by 1]  double   vector of temporary terms
 %
 
-assert(length(T) >= 23);
+assert(length(T) >= 29);
 
 T(1) = y(41)/y(42);
 T(2) = params(8)*T(1)^(-params(6));
@@ -35,8 +35,14 @@ T(17) = y(26)^T(16)+(y(42)*y(27))^T(16)+y(28)^T(16);
 T(18) = y(12)*params(2)/y(40);
 T(19) = y(8)^params(13);
 T(20) = y(7)^(1-params(13));
-T(21) = ((1-params(1))*y(18)-params(22))^2;
-T(22) = (-params(23))^2;
-T(23) = y(3)-y(45)+(1-params(1))*(y(17)*y(44)/y(40)-y(17))+params(1)*(y(28)/y(40)+y(26)/y(40)-y(26)-y(28));
+T(21) = ((1-params(1))*y(16)-params(23))^2;
+T(22) = ((1-params(1))*y(18)-params(22))^2;
+T(23) = (y(44)/params(37))^params(33);
+T(24) = (y(40)/params(38))^params(34);
+T(25) = (y(10)*y(41)/params(39))^params(35);
+T(26) = (y(43)/params(40))^params(36);
+T(27) = T(24)*T(25)*T(26);
+T(28) = T(27)^(1-params(33));
+T(29) = y(3)-y(45)+(1-params(1))*(y(17)*y(44)/y(40)-y(17))+params(1)*(y(28)/y(40)+y(26)/y(40)-y(26)-y(28));
 
 end

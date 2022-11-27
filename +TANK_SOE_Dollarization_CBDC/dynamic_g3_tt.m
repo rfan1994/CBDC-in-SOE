@@ -18,7 +18,7 @@ function T = dynamic_g3_tt(T, y, x, params, steady_state, it_)
 %   T           [#temp variables by 1]       double  vector of temporary terms
 %
 
-assert(length(T) >= 43);
+assert(length(T) >= 54);
 
 T = TANK_SOE_Dollarization_CBDC.dynamic_g2_tt(T, y, x, params, steady_state, it_);
 

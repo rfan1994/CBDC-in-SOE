@@ -13,12 +13,14 @@ function T = static_g1_tt(T, y, x, params)
 %   T         [#temp variables by 1]  double   vector of temporary terms
 %
 
-assert(length(T) >= 14);
+assert(length(T) >= 22);
 
 T = TANK_SOE.static_resid_tt(T, y, x, params);
 
-T(12) = getPowerDeriv(y(27)/y(25),1/params(12),1);
-T(13) = (-((1-params(1))*y(16)*(-y(41))/(y(37)*y(37))+params(1)*(-y(25))/(y(37)*y(37))));
-T(14) = getPowerDeriv(T(1),(-params(6)),1);
+T(18) = getPowerDeriv(y(10)*y(38)/params(39),params(35),1);
+T(19) = getPowerDeriv(T(15),1-params(33),1);
+T(20) = getPowerDeriv(y(27)/y(25),1/params(12),1);
+T(21) = (-((1-params(1))*y(16)*(-y(41))/(y(37)*y(37))+params(1)*(-y(25))/(y(37)*y(37))));
+T(22) = getPowerDeriv(T(1),(-params(6)),1);
 
 end
