@@ -13,18 +13,18 @@ function T = static_g1_tt(T, y, x, params)
 %   T         [#temp variables by 1]  double   vector of temporary terms
 %
 
-assert(length(T) >= 34);
+assert(length(T) >= 33);
 
 T = TANK_SOE_Dollarization.static_resid_tt(T, y, x, params);
 
-T(26) = getPowerDeriv(y(10)*y(41)/params(39),params(35),1);
-T(27) = getPowerDeriv(T(23),1-params(33),1);
-T(28) = 1/y(40);
-T(29) = getPowerDeriv(y(29)/y(26),T(5),1);
-T(30) = getPowerDeriv(T(13),params(12)/(params(12)-1),1);
-T(31) = getPowerDeriv(y(29)/(y(42)*y(27)),T(5),1);
-T(32) = getPowerDeriv(y(42)*y(27),T(12),1);
-T(33) = (-((1-params(1))*y(17)*(-y(44))/(y(40)*y(40))+params(1)*(-y(26))/(y(40)*y(40))));
-T(34) = getPowerDeriv(T(1),(-params(6)),1);
+T(25) = getPowerDeriv(y(10)*y(41)/params(39),params(35),1);
+T(26) = getPowerDeriv(T(22),1-params(33),1);
+T(27) = getPowerDeriv(y(29)/y(26),T(4),1);
+T(28) = getPowerDeriv(T(12),params(12)/(params(12)-1),1);
+T(29) = 1/y(40);
+T(30) = getPowerDeriv(y(29)/(y(42)*y(27)),T(4),1);
+T(31) = getPowerDeriv(y(42)*y(27),T(11),1);
+T(32) = (-((1-params(1))*y(17)*(-y(44))/(y(40)*y(40))+params(1)*(-y(26))/(y(40)*y(40))));
+T(33) = getPowerDeriv(y(41)/y(42),(-params(6)),1);
 
 end

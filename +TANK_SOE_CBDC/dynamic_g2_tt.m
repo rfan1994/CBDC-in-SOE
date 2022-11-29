@@ -18,7 +18,7 @@ function T = dynamic_g2_tt(T, y, x, params, steady_state, it_)
 %   T           [#temp variables by 1]       double  vector of temporary terms
 %
 
-assert(length(T) >= 43);
+assert(length(T) >= 44);
 
 T = TANK_SOE_CBDC.dynamic_g1_tt(T, y, x, params, steady_state, it_);
 

@@ -27,22 +27,22 @@ for n = 1:N
             dynare TANK_SOE.mod
             Variance1 = oo_.variance_decomposition;
             Welfare1 = oo_.mean(1:3);
-            SS1 = oo_.steady_state;
+            SS(:,n) = oo_.steady_state;
         case 2
             dynare TANK_SOE_CBDC.mod
             Variance2 = oo_.variance_decomposition;
             Welfare2 = oo_.mean(1:3);
-            SS2 = oo_.steady_state;
+            SS(:,n) = oo_.steady_state;
         case 3
             dynare TANK_SOE_Dollarization.mod
             Variance3 = oo_.variance_decomposition;
             Welfare3 = oo_.mean(1:3);
-            SS3 = oo_.steady_state;
+            SS(:,n) = oo_.steady_state;
         case 4
             dynare TANK_SOE_Dollarization_CBDC.mod  
             Variance4 = oo_.variance_decomposition;
             Welfare4 = oo_.mean(1:3);
-            SS4 = oo_.steady_state;      
+            SS(:,n) = oo_.steady_state;      
     end
     
     Y_EPS_M(n,:) = 100*log_y_eps_m; Y_EPS_A(n,:) = 100*log_y_eps_a; Y_EPS_Z(n,:) = 100*log_y_eps_z; Y_EPS_R(n,:) = 100*log_y_eps_r_star; Y_EPS_Y(n,:) = 100*log_y_eps_y_star;
@@ -74,25 +74,15 @@ dV(2,:) = (Welfare2./Welfare1).^(1/(1-sigma))-1;
 dV(3,:) = (Welfare4./Welfare3).^(1/(1-sigma))-1;
 
 delta_M = 0.1;
-SS = zeros(21,4);
-SS(1:5,1) = SS1(6:10)'; SS(1:5,2) = SS2(6:10)';
-SS(6:8,1) = SS1(13:15)'; SS(6:8,2) = SS2(13:15)';
-SS(10:12,1) = SS1(23:25)'; SS(10:12,2) = SS2(23:25)';
-SS(14,1) = SS1(26); SS(14,2) = SS2(26);
-SS(15,1) = SS1(28); SS(15,2) = SS2(28);
-SS(16,1) = SS1(25)*delta_M; SS(16,2) = SS2(25)*delta_M;
-SS(17:18,1) = SS1(32:33)'; SS(17:18,2) = SS2(32:33)';
-SS(19:20,1) = SS1(38:39)'; SS(19:20,2) = SS2(38:39)';
-SS(21,1) = SS1(42); SS(21,2) = SS2(42);
-
-SS(1:5,3) = SS3(6:10)'; SS(1:5,4) = SS4(6:10)';
-SS(6:9,3) = SS3(13:16)'; SS(6:9,4) = SS4(13:16)';
-SS(10:14,3) = SS3(24:28)'; SS(10:14,4) = SS4(24:28)';
-SS(15,3) = SS3(30); SS(15,4) = SS4(30);
-SS(16,3) = SS3(26)*delta_M; SS(16,4) = SS4(26)*delta_M;
-SS(17:18,3) = SS3(35:36)'; SS(17:18,4) = SS4(35:36)';
-SS(19:20,3) = SS3(41:42)'; SS(19:20,4) = SS4(41:42)';
-SS(21,3) = SS3(45); SS(21,4) = SS4(45);
+SS0(1:4,:) = SS(6:9,:);
+SS0(5,:) = SS(10,:).*SS(41,:);
+SS0(6:9,:) = SS(13:16,:);
+SS0(10:14,:) = SS(24:28,:);
+SS0(15,:) = SS(30,:);
+SS0(16,:) = SS(26,:)*delta_M; 
+SS0(17:18,:) = SS(35:36,:);
+SS0(19:20,:) = SS(41:42,:);
+SS0(21,:) = SS(45,:); 
 
 
 %% Variance decomposition

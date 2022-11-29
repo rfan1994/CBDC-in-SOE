@@ -170,7 +170,7 @@ c_{2t}^{-\sigma} &= \lambda_{2t}(1+s_{2t}+\tau_{2t}^c+\tau_c\frac{CBDC_{2t}}{l_{
 The no-arbitrage condition for cash and CBDC can be derived from equations (\ref{m2}) and (\ref{CBDC2}).
 
 \subsection{Bank}
-There is a continuum measure of monopolistic competitive banks $j \in [0,1]$. They take deposit from unconstrained households $d_{t}(j)$ and invest in intermediate firms $i_t(j)$ and accumulate capital stock $k_t(j)$. The deposit demand functions are solved from the household problem above. 
+There is a continuum measure of monopolistic competitive banks $j \in [0,1]$. They take deposits from unconstrained households $d_{t}(j)$ and invest in intermediate firms $i_t(j)$ and accumulate capital stock $k_t(j)$. The deposit demand functions are solved from the household problem above. 
 \begin{align*}
 d_{t}(j) = \Biggl(\frac{(r_t-r_t^d(j))^{-\epsilon_b}}{\big(\int_0^1(r_t-r_t^d(j))^{1-\epsilon_b}dj\big)^{-\frac{\epsilon_b}{1-\epsilon_b}}}\Biggl)d_{t} 
 \end{align*}
@@ -185,11 +185,11 @@ subject to the law of motion of capital and balance sheet constraint:
 & k_t(j) = d_{t}(j).
 \end{align*}
 
-The equilibrium is symmetric, then the first-order conditions give the supply for new investment 
+The equilibrium is symmetric; then the first-order conditions give the supply for new investment 
 \begin{align*}
 \lambda_{1t} = q_t\lambda_{1t}(1-\frac{\kappa_I}{2}(\frac{i_t}{i_{t-1}}-1)^2-\kappa_I(\frac{i_t}{i_{t-1}}-1)\frac{i_t}{i_{t-1}})+ \beta\E_tq_{t+1}\lambda_{1t+1}\kappa_I(\frac{i_{t+1}}{i_t}-1)^2(\frac{i_{t+1}}{i_t})^2,
 \end{align*}
-and optimal deposit rate chosen by the bank:  
+and optimal deposit rate is chosen by the bank:  
 \begin{align*}
 {r_{t}^d}^* &= \frac{\epsilon_b}{\epsilon_b-1}\frac{\beta E_t \lambda_{1t+1}(r_{t+1}^k+(1-\delta)q_{t+1})-(q_t-1)\lambda_{1t}}{\beta E_t (\lambda_{1t+1}/\pi_{t+1})}-\frac{1}{\epsilon_b-1}r_t.
 \end{align*}
@@ -243,7 +243,7 @@ The equilibrium is symmetric, the equilibrium interest rate and wage can be solv
 r_t^k &= \alpha mc_t \frac{y_{Ht}}{k_{t-1}}, \\
 \omega_t &= (1-\alpha) mc_t \frac{y_{Ht}}{h_t}.
 \end{align*}
-The marginal cost $mc_t$ is defined by reranging the price condition: 
+The marginal cost $mc_t$ is defined by rearranging the price condition: 
 \begin{align*}
 \frac{\epsilon}{\kappa_P}(\frac{mc_t}{p_{Ht}}-\frac{\epsilon-1}{\epsilon}) = (\pi_{Ht}-\bar{\pi})\pi_t-\beta E_t \frac{\lambda_{1t+1}}{\lambda_{1t}} (\pi_{Ht+1}-\bar{\pi})\pi_{Ht+1}\frac{y_{Ht+1}}{y_{Ht}}
 \end{align*}
@@ -469,99 +469,96 @@ $\phi_e$       & Exchange rate elasticity          & 2      	\\\hline
 \end{table}
 
 \clearpage
-
 \section{Welfare analysis}
-Table \ref{Welfare1} shows the welfare change if the economy is dollarized. The constrained households can use dollar as an alternative payment method; unconstrained households can choose to index their deposit using dollar. The steady state of economy with and without dollarization is presented in the first and third column of Table \ref{SS}. Dollarization provides additional liquidity service to constrained households. It increases the welfare of constrained households by decreasing the transaction cost and cost of carrying the domestic cash. However, it decreases the welfare of unconstrained households for two reasons:  (1) constrained households decrease labor supply, they have better way to smooth the consumption; (2) real exchange rate is higher, the dead-weight loss caused by carrying cash is lower. Dollarization decreases the overall social welfare, and decreases the tax collected by the government. 
 \begin{table}[h!]
 \centering
 \begin{tabular}{lccc}
 \hline\hline
 Welfare change & Social  & Unconstrained & Constrained  \\\hline
-Dollarization & -0.0015 &  -0.0053 &   0.0082 \\\hline        
+Dollarization & 0.0086 &   0.0065  &  0.0142 \\\hline        
 \end{tabular}
 \caption{Welfare change by adding dollarization}
 \label{Welfare1}
 \end{table}
+Table \ref{Welfare1} shows the welfare change if the economy is dollarized. Constrained households can use the dollar as an alternative payment method; unconstrained households can choose to index their deposit using the dollar. The steady state of the economy with and without dollarization is presented in the first and third columns of Table \ref{SS}. Dollarization provides additional liquidity services to constrained households. It increases the welfare of constrained households by decreasing the transaction cost. 
 
-Table \ref{Welfare2} shows the welfare change if the CBDC is introduces. CBDC increases welfare of constrained households by decreasing the transaction cost and cost of carrying the domestic cash. The steady state of economy with and without CBDC is presented in Table \ref{SS}. Introduction of CBDC decreases the use of dollar, even though the constrained households can avoid paying tax by using dollar. 
-
-However, CBDC is not Pareto improving, the welfare of unconstrained households decreases when CBDC is introduced for two reasons:   (1) constrained households decrease labor supply, they have better way to smooth the consumption; (2) real exchange rate is higher, the dead-weight loss caused by carrying cash is lower. Unlike dollarization, CBDC increases the overall social welfare, because CBDC does not increase the real exchange rate as much as dollarizaiton. CBDC increases the government revenue in both scenarios, since the government can collect more consumption tax from constraint households. 
-
-The welfare gain of CBDC is more significant when the economy is dollarized. The introduction of CBDC encourages the constraint households to use CBDC instead of dollar, and does not drive up much the real exchange rate. 
 
 \begin{table}[h!]
 \centering
 \begin{tabular}{lccc}
 \hline\hline
 Welfare change & Social & Unconstrained & Constrained  \\ \hline
-TANK &    0.0020  &  -0.0121 &   0.0400\\
-TANK with dollarization &  0.0038  &  -0.0077  &  0.0345 \\\hline
+TANK &     0.0126  &  0.0117 &   0.0151 \\
+TANK with dollarization &  0.0073  &  0.0068  &  0.0087 \\\hline
 \end{tabular}
 \caption{Welfare change by introducing CBDC}
 \label{Welfare2}
 \end{table}
 
-  
+Table \ref{Welfare2} shows the welfare change if the CBDC is introduced. CBDC increases the welfare of constrained households by decreasing the transaction cost and cost of getting cash. The steady state of the economy with and without CBDC is presented in Table \ref{SS}. The introduction of CBDC decreases the use of both cash and dollar, even though constrained households can avoid paying taxes by using cash or dollar. 
+
+The use of CBDC decreases the dead weight loss associated with the use of cash. The real exchange rate decreases, and the terms of trade improve. The welfare of both constrained and unconstrained households improve. 
+
 \begin{table}[h!]
 \centering
+\scriptsize
 \begin{tabular}{lllll}
 \hline\hline
                  &\multicolumn{2}{c}{TANK}  &\multicolumn{2}{c}{Dollarization}  \\
                  &  no CBCD & CBDC & no CBCD &  CBDC  \\\hline
-Consumption                 & 1.2924  & 1.2896  & 1.2905  & 1.2901  \\
-Labor                       & 0.8766  & 0.8791  & 0.8792  & 0.8798  \\
-Capital                     & 15.0967 & 15.0609 & 15.0844 & 15.067  \\
-Investment                  & 0.3774  & 0.3765  & 0.3771  & 0.3767  \\
-Domestic output             & 2.2424  & 2.2449  & 2.2462  & 2.2464  \\
-Consumption (unconstrained) & 1.3735  & 1.359   & 1.3668  & 1.358   \\
-Labor (unconstrained)       & 0.8344  & 0.8389  & 0.836   & 0.8391  \\
-Deposit                     & 18.8709 & 18.8261 & 10.7379 & 10.6945 \\
+Consumption                 & 1.2671  & 1.281   & 1.2776  & 1.2872  \\
+Labor                       & 0.883   & 0.8788  & 0.8819  & 0.8807  \\
+Capital                     & 15.0352 & 15.0265 & 15.0496 & 15.0604 \\
+Investment                  & 0.3759  & 0.3757  & 0.3762  & 0.3765  \\
+GDP       &     1.9195   & 1.9180  &  1.9211  &  1.9223  \\
+Consumption (unconstrained) & 1.3392  & 1.3527  & 1.3467  & 1.3545  \\
+Labor (unconstrained)       & 0.8453  & 0.8409  & 0.8428  & 0.8402  \\
+Deposit                     & 18.794  & 18.7831 & 10.6317 & 10.67   \\
 Deposit indexed in dollar   & 0       & 0       & 6.25    & 6.25    \\
-Consumption (constrained)   & 0.9679  & 1.0121  & 0.985   & 1.0186  \\
-Labor (constrained)         & 1.0455  & 1.0401  & 1.0516  & 1.0424  \\
-Cash                        & 1.0049  & 0.1697  & 0.3323  & 0.072   \\
-Dollar                      & 0       & 0       & 0.1584  & 0.0587  \\
-CBDC                  & 0       & 0.4284  & 0       & 0.2774  \\
-Transaction cost            & 0.0062  & 0.0001  & 0.0021  & 0       \\
-Cost of cash                & 0.1005  & 0.017   & 0.0332  & 0.0072  \\
+Consumption (constrained)   & 0.9787  & 0.9941  & 1.0014  & 1.0179  \\
+Labor (constrained)         & 1.0339  & 1.0307  & 1.0383  & 1.0427  \\
+Cash                        & 1.0161  & 0.2728  & 0.3408  & 0.0715  \\
+Dollar                      & 0       & 0       & 0.1581  & 0.0565  \\
+CBDC                & 0       & 0.7334  & 0       & 0.284   \\
+Transaction cost            & 0.0062  & 0.0006  & 0.0021  & 0       \\
+Cost of cash                & 0.1016  & 0.0273  & 0.0341  & 0.0071  \\
 Return to capital           & 0.0351  & 0.0351  & 0.0351  & 0.0351  \\
-Wage                        & 1.2273  & 1.2209  & 1.2228  & 1.2205  \\
-Domestic price              & 0.8593  & 0.8563  & 0.8572  & 0.8561  \\
-Real exchange rate          & 1.2921  & 1.3016  & 1.2988  & 1.3023  \\
-Tax revenue                 & 0.1319  & 0.1396  & 0.1312  & 0.1363 \\\hline
+Wage                        & 1.2134  & 1.2185  & 1.2161  & 1.2187  \\
+Domestic price              & 0.8528  & 0.8552  & 0.8541  & 0.8553  \\
+Real exchange rate          & 1.313   & 1.3052  & 1.3088  & 1.3049  \\
+Tax revenue                 & 0.1286  & 0.1458  & 0.1293  & 0.1361  \\\hline
 \end{tabular}
 \caption{Steady State Comparison}
 \label{SS}
 \end{table}
-Table \ref{SS} compares the steady state of four scenarios. Adoption of CBDC increases the domestic output by promoting financial inclusion. Also, by promoting CBDC, government is able to collect for tax revenue by monitoring better the transaction. By using CBDC, the dead weight loss associated with cash is reduced significantly. 
+Table \ref{SS} compares the steady state of four scenarios. The adoption of CBDC increases the domestic GDP when the economy is dollarized. Also, by promoting CBDC, the government can collect more tax revenue by monitoring better the transaction. By using CBDC, the dead weight loss associated with cash is reduced significantly. 
       
-      
-\clearpage
+  
 \section{Variance Decomposition}
-Table \ref{variance} presents the variance decomposition of the benchmark TANK model. The consumption fluctuation of unconstrained households is mainly contributed to TFP shocks, while consumption fluctuation of constrained households is affected more by liquidity and monetary shocks. The terms of trade is heavily affected by the foreign and liquidity shocks.
 \begin{table}[h!]
 \centering 
 \scriptsize
 \begin{tabular}{lcccccc}
 \hline \hline
-                                    & TFP     & Liquidity & Government  & Foreign & Foreign & Monetary \\
+                                    & TFP     & Liquidity & Fiscal & Foreign & Foreign & Monetary \\
                                     &     &  & purchase &  output & interest rate &  \\\hline
-Output                      & 96.902  & 0.0633  & 0.2687 & 2.685   & 0.0089 & 0.0721  \\
-Consumption                 & 92.9651 & 0.1279  & 0.683  & 1.7427  & 4.067  & 0.4142  \\
-Consumption (unconstrained) & 91.4215 & 0.8433  & 0.4131 & 1.3948  & 5.823  & 0.1043  \\
-Consumption (constrained)   & 70.2997 & 14.2373 & 0.7096 & 1.4267  & 4.5426 & 8.7842  \\
-Interest rate               & 84.5918 & 0.3697  & 0.0102 & 2.0074  & 12.969 & 0.0518  \\
-Deposit rate                & 84.5918 & 0.3697  & 0.0102 & 2.0074  & 12.969 & 0.0518  \\
-Wage                        & 88.9676 & 0.1126  & 0.0065 & 4.1987  & 0.7264 & 5.9882  \\
-Domestic inflation          & 70.2562 & 0.0489  & 0.0647 & 1.671   & 0.0708 & 27.8883 \\
-CPI inflation           & 65.1624 & 0.0453  & 0.092  & 1.0422  & 0.4122 & 33.2459 \\
-TOT                         & 47.7393 & 1.367   & 0.2858 & 44.7414 & 5.7661 & 0.1004  \\
-Deposit                     & 97.6781 & 0.6504  & 0.3239 & 0.6284  & 0.6807 & 0.0385  \\
-Cash                        & 80.648  & 0.2562  & 0.4346 & 1.4593  & 6.6019 & 10.6001 \\\hline
+Output                     & 96.9318 & 0.006   & 0.2548 & 2.6956  & 0.012   & 0.0998  \\
+Consumption                & 90.6252 & 2.483   & 0.6722 & 1.6683  & 3.9913  & 0.56    \\
+Consumption (unconstrained)  & 91.9247 & 0.0778  & 0.4511 & 1.4554  & 6.0061  & 0.0849  \\
+Consumption (constrained)  & 67.8614 & 17.6443 & 0.555  & 1.1615  & 4.4085  & 8.3692  \\
+Interest rate              & 84.8279 & 0.0572  & 0.0152 & 2.0398  & 12.9978 & 0.062   \\
+Deposit rate               & 84.8279 & 0.0572  & 0.0152 & 2.0398  & 12.9978 & 0.062   \\
+Wage                       & 88.5733 & 0.2514  & 0.0052 & 4.1626  & 0.699   & 6.3085  \\
+Domestic inflation         & 70.4137 & 0.0701  & 0.0588 & 1.6873  & 0.0716  & 27.6985 \\
+CPI inflation           & 65.7572 & 0.0027  & 0.0852 & 1.0509  & 0.3899  & 32.714  \\
+TOT                        & 47.692  & 1.6742  & 0.2693 & 44.8187 & 5.5368  & 0.0089  \\
+Deposit                    & 98.1528 & 0.0282  & 0.3555 & 0.6492  & 0.7673  & 0.0469  \\
+Cash                       & 80.5723 & 0.8232  & 0.3528 & 1.2652  & 6.6471  & 10.3393 \\\hline
 \end{tabular}
 \caption{Variance decomposition of TANK model}
 \label{variance}
 \end{table}
+Table \ref{variance} presents the variance decomposition of the benchmark TANK model. The consumption fluctuation of unconstrained households is mainly contributed to TFP shocks (over 90\%), while consumption fluctuation of constrained households is affected more by liquidity (18\%) and monetary shocks (8\%). The terms of trade are affected by the foreign output shocks; over 30\% of the volatility of the inflation rate is attributed to monetary policy shocks. The volatility of terms of trade is determined mainly by TFP and foreign shocks. 
 
 \begin{figure}[h!]
 \centering
@@ -570,7 +567,7 @@ Cash                        & 80.648  & 0.2562  & 0.4346 & 1.4593  & 6.6019 & 10
 \label{log_c2}
 \end{figure}
 
-Figure \ref{log_c2} shows the variance decomposition of consumption for the constrained households. Both introduction of CBDC and dollar decreases the effect of TFP on the volatility of the consumption of constrained households. Dollarization increases the exposure of constrained households to the international shocks. CBDC increases the effectiveness of monetary policy. 
+Figure \ref{log_c2} shows the variance decomposition of consumption for the constrained households. Both introduction of CBDC and the dollar decrease the effect of TFP on the volatility of the consumption of constrained households. Dollarization increases the exposure of constrained households to international shocks, while CBDC decreases it. The adoption of CBDC decreases the volatility attributable to policy shocks. 
 
 \begin{figure}[h!]
 \centering
@@ -579,32 +576,31 @@ Figure \ref{log_c2} shows the variance decomposition of consumption for the cons
 \label{log_tot}
 \end{figure}
 
-Figure \ref{log_tot} shows the variance decomposition of terms of trade. Dollariation amplifies the effect of international shock on the terms of trade.
+Figure \ref{log_tot} shows the variance decomposition of terms of trade. Dollarization amplifies the effect of international shocks on the terms of trade. Adoption of CBDC decreases the responses of terms of trade to international shocks. 
 
-\clearpage
 \section{Impulse Response}
 
 \begin{figure}[h!]
 \includegraphics[width=\textwidth]{TFP}
 \caption{Impulse Responses of TFP Shock}
 \label{IRF1}
-\scriptsize{Notes: Response of key variables to a negative 1 standard deviation TFP shock. Vertical axes indicate percentage deviation from steady state. Horizontal axis indicate quarters after shock. }
+\scriptsize{Notes: Response of key variables to a negative 1 standard deviation TFP shock. The Vertical axis indicates the percentage deviation from the steady state. The horizontal axis indicates years after the shock. }
 \end{figure}
-Figure \ref{IRF1} plots the responses of key variable following a negative TFP shock. Introduction of CBDC decreases the responses of output and consumption to TFP. CBDC promotes financial inclusion of constrained household, and decreases the volatility of output and consumption. The constrained households switch more to CBDC following a negative TFP shock, since they are more sensitive to the cost of cash, and rely more on CBDC to smooth out the consumption. The terms of trade responds more to TFP shocks when CBDC is introduced. The higher response of terms of trade is a result of the portfolio adjustment. 
+Figure \ref{IRF1} plots the responses of key variables following a negative TFP shock. The introduction of CBDC decreases the responses of consumption to TFP shocks. CBDC promotes the financial inclusion of constrained households and decreases the volatility of consumption. The constrained households switch more to CBDC following a negative TFP shock since they are more sensitive to the cost of cash and rely more on CBDC to smooth out their consumption. The terms of trade respond less to TFP shocks when CBDC is introduced as a result of the portfolio adjustment. 
 
 \begin{figure}[h!]
 \includegraphics[width=\textwidth]{Monetary}
 \caption{Impulse Responses of Monetary Policy Shock}
 \label{IRF2}
-\scriptsize{Notes: Response of key variables to a positive 1 standard deviation monetary policy shock. Vertical axes indicate percentage deviation from steady state. Horizontal axis indicate quarters after shock. }
+\scriptsize{Notes: Response of key variables to a positive 1 standard deviation monetary policy shock. The Vertical axis indicates the percentage deviation from the steady state. The horizontal axis indicates years after the shock. }
 \end{figure}
-Figure \ref{IRF2} plots the responses of key variable following a positive monetary shock. Introduction of CBDC increases the monetary policy effectiveness. A positive monetary policy shock favors the unconstrained households since they receive higher payoff to their deposit. The introduction of CBDC decreases the inequality effect of monetary policy. 
+Figure \ref{IRF2} plots the responses of key variables following a positive monetary shock. A positive monetary policy shock favors unconstrained households since they receive a higher payoff to their deposit. The introduction of CBDC decreases the inequality effect of monetary policy. 
 
 \begin{figure}[h!]
 \includegraphics[width=\textwidth]{Liquidity}
 \label{IRF3}
 \caption{Impulse Responses of Liquidity Shock}
-\scriptsize{Notes: Response of key variables to a positive 1 standard deviation liquidity shock. Vertical axes indicate percentage deviation from steady state. Horizontal axis indicate quarters after shock. }
+\scriptsize{Notes: Response of key variables to a positive 1 standard deviation liquidity shock. The Vertical axis indicates the percentage deviation from the steady state. The horizontal axis indicates years after the shock.}
 \end{figure}
 
 

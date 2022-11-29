@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.9.16)  29 NOV 2022 09:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.9.16)  29 NOV 2022 15:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -327,79 +327,88 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[14
 
-] [15] <log_c2.png, id=62, 566.5968pt x 264.99pt>
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<log_c2.png, id=56, 566.5968pt x 264.99pt>
 File: log_c2.png Graphic file (type png)
  <use log_c2.png>
-Package pdftex.def Info: log_c2.png used on input line 568.
+Package pdftex.def Info: log_c2.png used on input line 565.
 (pdftex.def)             Requested size: 375.80544pt x 175.75923pt.
 
-<log_tot.png, id=63, 566.5968pt x 264.99pt>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<log_tot.png, id=57, 566.5968pt x 264.99pt>
 File: log_tot.png Graphic file (type png)
  <use log_tot.png>
-Package pdftex.def Info: log_tot.png used on input line 577.
+Package pdftex.def Info: log_tot.png used on input line 574.
 (pdftex.def)             Requested size: 375.80544pt x 175.75923pt.
+ [14
 
+]
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+LaTeX Warning: Text page 15 contains only floats.
 
-[16
-
- <./log_c2.png (PNG copy)>] [17 <./log_tot.png (PNG copy)>]
-<TFP.png, id=70, 804.1242pt x 446.6286pt>
+[15 <./log_c2.png (PNG copy)>] <TFP.png, id=64, 804.1242pt x 446.6286pt>
 File: TFP.png Graphic file (type png)
- <use TFP.png>
-Package pdftex.def Info: TFP.png used on input line 588.
+
+<use TFP.png>
+Package pdftex.def Info: TFP.png used on input line 584.
 (pdftex.def)             Requested size: 469.75502pt x 260.91888pt.
 
-<Monetary.png, id=71, 809.424pt x 446.6286pt>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<Monetary.png, id=65, 809.424pt x 446.6286pt>
 File: Monetary.png Graphic file (type png)
  <use Monetary.png>
-Package pdftex.def Info: Monetary.png used on input line 596.
+Package pdftex.def Info: Monetary.png used on input line 592.
 (pdftex.def)             Requested size: 469.75502pt x 259.20833pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<Liquidity.png, id=72, 809.424pt x 446.6286pt>
+<Liquidity.png, id=66, 809.424pt x 446.6286pt>
 File: Liquidity.png Graphic file (type png)
  <use Liquidity.png>
-Package pdftex.def Info: Liquidity.png used on input line 604.
+Package pdftex.def Info: Liquidity.png used on input line 600.
 (pdftex.def)             Requested size: 469.75502pt x 259.20833pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[18
+[16 <./log_tot.png (PNG copy)>]
 
- <./TFP.png (PNG copy)>] [19 <./Monetary.png (PNG copy)> <./Liquidity.png (PNG 
-copy)>] (./CBDC_SOE.aux) ) 
+LaTeX Warning: Text page 17 contains only floats.
+
+[17 <./TFP.png (PNG copy)> <./Monetary.png (PNG copy)>] [18 <./Liquidity.png (P
+NG copy)>] (./CBDC_SOE.aux) ) 
 Here is how much of TeX's memory you used:
  3077 strings out of 492995
  41710 string characters out of 6132704
- 120103 words of memory out of 5000000
+ 121103 words of memory out of 5000000
  6567 multiletter control sequences out of 15000+600000
  13782 words of font info for 55 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,15n,32p,946b,224s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2017/texmf-dist/fonts/type1/publi
-c/bbold-type1/bbold10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmex10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmmi12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmmi6.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmmi8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmr12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmr6.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmr8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/c
-msy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-sy6.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
-8.pfb>
-Output written on CBDC_SOE.pdf (19 pages, 552938 bytes).
+ 39i,15n,32p,590b,224s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2017/texmf-dist/fonts/type1/pu
+blic/bbold-type1/bbold10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmex10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmmi8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmr12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmr6.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmr8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmsy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmsy6.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/c
+msy8.pfb>
+Output written on CBDC_SOE.pdf (18 pages, 560620 bytes).
 PDF statistics:
- 119 PDF objects out of 1000 (max. 8388607)
- 80 compressed objects within 1 object stream
+ 115 PDF objects out of 1000 (max. 8388607)
+ 77 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  26 words of extra memory for PDF output out of 10000 (max. 10000000)
 
