@@ -13,7 +13,7 @@ function T = static_g2_tt(T, y, x, params)
 %   T         [#temp variables by 1]  double   vector of temporary terms
 %
 
-assert(length(T) >= 33);
+assert(length(T) >= 34);
 
 T = TANK_SOE_Dollarization.static_g1_tt(T, y, x, params);
 

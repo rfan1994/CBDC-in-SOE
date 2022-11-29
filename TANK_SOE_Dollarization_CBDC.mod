@@ -89,8 +89,8 @@ SIGMA = 2;
 CHI = 1;
 PHI = 3;
 ETA = 2;
-GAMMA = 0.9;
-GAMMA_STAR = 0.1;
+GAMMA = 0.58;
+GAMMA_STAR = 0.27;
 A = 0.9;
 B = 0.7; 
 DELTA_M = 0.1;
@@ -107,10 +107,10 @@ EPSILON = 6;
 KAPPA_I = 1.728; 
 EPSILON_B = 3; 
 KAPPA_B = 5; 
-KAPPA_D = 10; 
+KAPPA_D = 1; 
 KAPPA_M = 10; 
 BF_BAR = 0.05;
-DF_BAR = 2;
+DF_BAR = 5;
 MF_BAR = 0;
 //% Fiscal
 TAU_C = 0.12;
@@ -129,7 +129,7 @@ PHI_Y = 10;
 PHI_E = 2;
 R_BAR = 1.03/0.99;
 PI_BAR = 1.03;
-Y_BAR = 2.29561*0.983381;
+Y_BAR = 0.85933*2.24238;
 E_BAR = 1.03;
 //% SHOCKS
 RHO_A = 0.9;
@@ -172,7 +172,7 @@ h = (1-LAMBDA)*h1+LAMBDA*h2;
 k = (1-LAMBDA)*(d1+s*d_f1);
 
 //% 6 resource constraint
-y_h = GAMMA*p_h^(-ETA)*((1-LAMBDA)*(1+s1)*c1+LAMBDA*(1+s2)*c2+i)+LAMBDA*DELTA_M*m2(-1)/pi
+y_h = GAMMA*p_h^(-ETA)*((1-LAMBDA)*(1+s1)*c1+LAMBDA*(1+s2)*c2+i)+LAMBDA*DELTA_M*(m2(-1)/pi+m_f2(-1)*s/s(-1))
     + a_g+KAPPA_P/2*(pi_h-PI_BAR)^2*y_h+GAMMA_STAR*(p_h/s)^(-ETA)*a_y_star;
 
 //% 7 welfare
@@ -222,13 +222,13 @@ h2^PHI = lm2*w/CHI;
 lm2*(1-c2/l2*(tau2+TAU_C*cbdc2/l2)*(l2/m2)^(1/EPSILON_M)) = BETA*lm2(+1)*(1-DELTA_M)/pi(+1);
 
 //% 21 dollar
-lm2*(1-c2/l2*(tau2+TAU_C*cbdc2/l2)*(l2/(s*m_f2))^(1/EPSILON_M)+KAPPA_M*LAMBDA*(LAMBDA*m_f2-MF_BAR)) = BETA*lm2(+1)*s(+1)/s;
+lm2*(1-c2/l2*(tau2+TAU_C*cbdc2/l2)*(l2/(s*m_f2))^(1/EPSILON_M)+KAPPA_M*LAMBDA*(LAMBDA*m_f2-MF_BAR)) = BETA*lm2(+1)*(1-DELTA_M)*s(+1)/s;
 
 //% 22 CBDC
 lm2*(1-c2/l2*(tau2+TAU_C*cbdc2/l2)*(l2/cbdc2)^(1/EPSILON_M)+TAU_C*cbdc2/l2) = BETA*lm2(+1)/pi(+1);
 
 //% 23 BC
-(1+s2+TAU_C*cbdc2/l2)*c2+(m2-(1-DELTA_M)*m2(-1)/pi)+s*(m_f2-m_f2(-1)/s(-1))+(cbdc2-cbdc2(-1)/pi) = w*h2-t2-KAPPA_M/2*s*(LAMBDA*m_f2-MF_BAR)^2;
+(1+s2+TAU_C*cbdc2/l2)*c2+(m2-(1-DELTA_M)*m2(-1)/pi)+s*(m_f2-(1-DELTA_M)*m_f2(-1)/s(-1))+(cbdc2-cbdc2(-1)/pi) = w*h2-t2-KAPPA_M/2*s*(LAMBDA*m_f2-MF_BAR)^2;
 
 //% 24 liquidity
 l2 = (m2^((EPSILON_M-1)/EPSILON_M)+(s*m_f2)^((EPSILON_M-1)/EPSILON_M)+cbdc2^((EPSILON_M-1)/EPSILON_M))^(EPSILON_M/(EPSILON_M-1));
@@ -362,9 +362,9 @@ v1 = -73.5515;
 lm2 = 0.645333;
 c2 = 1.2266;
 h2 = 0.987172;
-m2 = 0.0534071;
-m_f2 = 0.153591;
-cbdc2 = 0.258974;
+m2 = 0.123566;
+m_f2 = 0.31541;
+cbdc2 = 0.2;
 l2 = 1.38431;
 s2 = 1.75555e-05;
 tau2 = 0.00746573;

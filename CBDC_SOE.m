@@ -6,20 +6,20 @@ addpath /Applications/Dynare/5.1/matlab
 N = 4; T = 101;
 V = zeros(N,3);
 
-Y_EPS_M = zeros(N,T); Y_EPS_A = zeros(N,T); Y_EPS_Z = zeros(N,T);
-C_EPS_M = zeros(N,T); C_EPS_A = zeros(N,T); C_EPS_Z = zeros(N,T);
-C1_EPS_M = zeros(N,T); C1_EPS_A = zeros(N,T); C1_EPS_Z = zeros(N,T);
-C2_EPS_M = zeros(N,T); C2_EPS_A = zeros(N,T); C2_EPS_Z = zeros(N,T);
-R_EPS_M = zeros(N,T); R_EPS_A = zeros(N,T); R_EPS_Z = zeros(N,T);
-R_D_EPS_M = zeros(N,T); R_D_EPS_A = zeros(N,T); R_D_EPS_Z = zeros(N,T);
-W_EPS_M = zeros(N,T); W_EPS_A = zeros(N,T); W_EPS_Z = zeros(N,T);
-PI_H_EPS_M = zeros(N,T); PI_H_EPS_A = zeros(N,T); PI_H_EPS_Z = zeros(N,T);
-PI_EPS_M = zeros(N,T); PI_EPS_A = zeros(N,T); PI_EPS_Z = zeros(N,T);
-TOT_EPS_M = zeros(N,T); TOT_EPS_A = zeros(N,T); TOT_EPS_Z = zeros(N,T);
-D1_EPS_M = zeros(N,T); D1_EPS_A = zeros(N,T); D1_EPS_Z = zeros(N,T);
-M2_EPS_M = zeros(N,T); M2_EPS_A = zeros(N,T); M2_EPS_Z = zeros(N,T);
-M_F2_EPS_M = zeros(N,T); M_F2_EPS_A = zeros(N,T); M_F2_EPS_Z = zeros(N,T);
-CBDC2_EPS_M = zeros(N,T);CBDC2_EPS_A = zeros(N,T); CBDC2_EPS_Z = zeros(N,T);
+Y_EPS_M = zeros(N,T); Y_EPS_A = zeros(N,T); Y_EPS_Z = zeros(N,T); Y_EPS_Y = zeros(N,T);Y_EPS_R = zeros(N,T);
+C_EPS_M = zeros(N,T); C_EPS_A = zeros(N,T); C_EPS_Z = zeros(N,T); C_EPS_Y = zeros(N,T); C_EPS_R = zeros(N,T);
+C1_EPS_M = zeros(N,T); C1_EPS_A = zeros(N,T); C1_EPS_Z = zeros(N,T); C1_EPS_Y = zeros(N,T); C1_EPS_R = zeros(N,T);
+C2_EPS_M = zeros(N,T); C2_EPS_A = zeros(N,T); C2_EPS_Z = zeros(N,T); C2_EPS_Y = zeros(N,T); C2_EPS_R = zeros(N,T);
+R_EPS_M = zeros(N,T); R_EPS_A = zeros(N,T); R_EPS_Z = zeros(N,T); R_EPS_Y = zeros(N,T); R_EPS_R = zeros(N,T);
+R_D_EPS_M = zeros(N,T); R_D_EPS_A = zeros(N,T); R_D_EPS_Z = zeros(N,T); R_D_EPS_Y = zeros(N,T); R_D_EPS_R = zeros(N,T);
+W_EPS_M = zeros(N,T); W_EPS_A = zeros(N,T); W_EPS_Z = zeros(N,T); W_EPS_Y = zeros(N,T); W_EPS_R = zeros(N,T);
+PI_H_EPS_M = zeros(N,T); PI_H_EPS_A = zeros(N,T); PI_H_EPS_Z = zeros(N,T); PI_H_EPS_Y = zeros(N,T); PI_H_EPS_R = zeros(N,T);
+PI_EPS_M = zeros(N,T); PI_EPS_A = zeros(N,T); PI_EPS_Z = zeros(N,T); PI_EPS_Y = zeros(N,T); PI_EPS_R = zeros(N,T);
+TOT_EPS_M = zeros(N,T); TOT_EPS_A = zeros(N,T); TOT_EPS_Z = zeros(N,T); TOT_EPS_Y = zeros(N,T); TOT_EPS_R = zeros(N,T);
+D1_EPS_M = zeros(N,T); D1_EPS_A = zeros(N,T); D1_EPS_Z = zeros(N,T); D1_EPS_Y = zeros(N,T); D1_EPS_R = zeros(N,T);
+M2_EPS_M = zeros(N,T); M2_EPS_A = zeros(N,T); M2_EPS_Z = zeros(N,T); M2_EPS_Y = zeros(N,T); M2_EPS_R = zeros(N,T);
+M_F2_EPS_M = zeros(N,T); M_F2_EPS_A = zeros(N,T); M_F2_EPS_Z = zeros(N,T); M_F2_EPS_Y = zeros(N,T); M_F2_EPS_R = zeros(N,T);
+CBDC2_EPS_M = zeros(N,T);CBDC2_EPS_A = zeros(N,T); CBDC2_EPS_Z = zeros(N,T); CBDC2_EPS_Y = zeros(N,T); CBDC2_EPS_R = zeros(N,T);
 
 for n = 1:N
     switch n
@@ -45,22 +45,22 @@ for n = 1:N
             SS4 = oo_.steady_state;      
     end
     
-    Y_EPS_M(n,:) = 100*log_y_eps_m; Y_EPS_A(n,:) = 100*log_y_eps_a; Y_EPS_Z(n,:) = 100*log_y_eps_z;
-    C_EPS_M(n,:) = 100*log_c_eps_m; C_EPS_A(n,:) = 100*log_c_eps_a; C_EPS_Z(n,:) = 100*log_c_eps_z;
-    C1_EPS_M(n,:) = 100*log_c1_eps_m; C1_EPS_A(n,:) = 100*log_c1_eps_a; C1_EPS_Z(n,:) = 100*log_c1_eps_z;
-    C2_EPS_M(n,:) = 100*log_c2_eps_m; C2_EPS_A(n,:) = 100*log_c2_eps_a; C2_EPS_Z(n,:) = 100*log_c2_eps_z;
-    R_EPS_M(n,:) = 100*log_r_eps_m; R_EPS_A(n,:) = 100*log_r_eps_a; C2_EPS_Z(n,:) = 100*log_r_eps_z;
-    R_D_EPS_M(n,:) = 100*log_r_d_eps_m; R_D_EPS_A(n,:) = 100*log_r_d_eps_a; R_D_EPS_Z(n,:) = 100*log_r_d_eps_z;
-    W_EPS_M(n,:) = 100*log_w_eps_m;  W_EPS_A(n,:) = 100*log_w_eps_a; W_EPS_Z(n,:) = 100*log_w_eps_z;
-    PI_H_EPS_M(n,:) = 100*log_pi_h_eps_m; PI_H_EPS_A(n,:) = 100*log_pi_h_eps_a; PI_H_EPS_Z(n,:) = 100*log_pi_h_eps_z;
-    PI_EPS_M(n,:) = 100*log_pi_eps_m; PI_EPS_A(n,:) = 100*log_pi_eps_a; PI_EPS_Z(n,:) = 100*log_pi_eps_z;
-    TOT_EPS_M(n,:) = 100*log_tot_eps_m; TOT_EPS_A(n,:) = 100*log_tot_eps_a; TOT_EPS_Z(n,:) = 100*log_tot_eps_z;
-    D1_EPS_M(n,:) = 100*log_d1_eps_m;  D1_EPS_A(n,:) = 100*log_d1_eps_a; D1_EPS_Z(n,:) = 100*log_d1_eps_z;
-    M2_EPS_M(n,:) = 100*log_m2_eps_m;  M2_EPS_A(n,:) = 100*log_m2_eps_a; M2_EPS_Z(n,:) = 100*log_m2_eps_z;
-    CBDC2_EPS_M(n,:) = 100*log_cbdc2_eps_m; CBDC2_EPS_A(n,:) = 100*log_cbdc2_eps_a; CBDC2_EPS_Z(n,:) = 100*log_cbdc2_eps_z;
+    Y_EPS_M(n,:) = 100*log_y_eps_m; Y_EPS_A(n,:) = 100*log_y_eps_a; Y_EPS_Z(n,:) = 100*log_y_eps_z; Y_EPS_R(n,:) = 100*log_y_eps_r_star; Y_EPS_Y(n,:) = 100*log_y_eps_y_star;
+    C_EPS_M(n,:) = 100*log_c_eps_m; C_EPS_A(n,:) = 100*log_c_eps_a; C_EPS_Z(n,:) = 100*log_c_eps_z; C_EPS_R(n,:) = 100*log_c_eps_r_star; C_EPS_Y(n,:) = 100*log_c_eps_y_star;
+    C1_EPS_M(n,:) = 100*log_c1_eps_m; C1_EPS_A(n,:) = 100*log_c1_eps_a; C1_EPS_Z(n,:) = 100*log_c1_eps_z; C1_EPS_R(n,:) = 100*log_c1_eps_r_star; C1_EPS_Y(n,:) = 100*log_c1_eps_y_star;
+    C2_EPS_M(n,:) = 100*log_c2_eps_m; C2_EPS_A(n,:) = 100*log_c2_eps_a; C2_EPS_Z(n,:) = 100*log_c2_eps_z; C2_EPS_R(n,:) = 100*log_c2_eps_r_star; C2_EPS_Y(n,:) = 100*log_c2_eps_y_star;
+    R_EPS_M(n,:) = 100*log_r_eps_m; R_EPS_A(n,:) = 100*log_r_eps_a; C2_EPS_Z(n,:) = 100*log_r_eps_z; C2_EPS_R(n,:) = 100*log_r_eps_r_star; C2_EPS_Y(n,:) = 100*log_r_eps_y_star;
+    R_D_EPS_M(n,:) = 100*log_r_d_eps_m; R_D_EPS_A(n,:) = 100*log_r_d_eps_a; R_D_EPS_Z(n,:) = 100*log_r_d_eps_z; R_D_EPS_R(n,:) = 100*log_r_d_eps_r_star; R_D_EPS_Y(n,:) = 100*log_r_d_eps_y_star;
+    W_EPS_M(n,:) = 100*log_w_eps_m;  W_EPS_A(n,:) = 100*log_w_eps_a; W_EPS_Z(n,:) = 100*log_w_eps_z; W_EPS_R(n,:) = 100*log_w_eps_r_star; W_EPS_Y(n,:) = 100*log_w_eps_y_star;
+    PI_H_EPS_M(n,:) = 100*log_pi_h_eps_m; PI_H_EPS_A(n,:) = 100*log_pi_h_eps_a; PI_H_EPS_Z(n,:) = 100*log_pi_h_eps_z; PI_H_EPS_R(n,:) = 100*log_pi_h_eps_r_star; PI_H_EPS_Y(n,:) = 100*log_pi_h_eps_y_star;
+    PI_EPS_M(n,:) = 100*log_pi_eps_m; PI_EPS_A(n,:) = 100*log_pi_eps_a; PI_EPS_Z(n,:) = 100*log_pi_eps_z; PI_EPS_R(n,:) = 100*log_pi_eps_r_star; PI_EPS_Y(n,:) = 100*log_pi_eps_y_star;
+    TOT_EPS_M(n,:) = 100*log_tot_eps_m; TOT_EPS_A(n,:) = 100*log_tot_eps_a; TOT_EPS_Z(n,:) = 100*log_tot_eps_z; TOT_EPS_R(n,:) = 100*log_tot_eps_r_star; TOT_EPS_Y(n,:) = 100*log_tot_eps_y_star;
+    D1_EPS_M(n,:) = 100*log_d1_eps_m;  D1_EPS_A(n,:) = 100*log_d1_eps_a; D1_EPS_Z(n,:) = 100*log_d1_eps_z; D1_EPS_R(n,:) = 100*log_d1_eps_r_star; D1_EPS_Y(n,:) = 100*log_d1_eps_y_star;
+    M2_EPS_M(n,:) = 100*log_m2_eps_m;  M2_EPS_A(n,:) = 100*log_m2_eps_a; M2_EPS_Z(n,:) = 100*log_m2_eps_z; M2_EPS_R(n,:) = 100*log_m2_eps_r_star; M2_EPS_Y(n,:) = 100*log_m2_eps_y_star;
+    CBDC2_EPS_M(n,:) = 100*log_cbdc2_eps_m; CBDC2_EPS_A(n,:) = 100*log_cbdc2_eps_a; CBDC2_EPS_Z(n,:) = 100*log_cbdc2_eps_z; CBDC2_EPS_R(n,:) = 100*log_cbdc2_eps_r_star; CBDC2_EPS_Y(n,:) = 100*log_cbdc2_eps_y_star;
     
     if n>2
-        M_F2_EPS_M(n,:) = 100*log_m_f2_eps_m;  M_F2_EPS_A(n,:) = 100*log_m_f2_eps_a; M_F2_EPS_Z(n,:) = 100*log_m_f2_eps_z;
+        M_F2_EPS_M(n,:) = 100*log_m_f2_eps_m; M_F2_EPS_A(n,:) = 100*log_m_f2_eps_a; M_F2_EPS_Z(n,:) = 100*log_m_f2_eps_z; M_F2_EPS_R(n,:) = 100*log_m_f2_eps_r_star; M_F2_EPS_Y(n,:) = 100*log_m_f2_eps_y_star;
     end
     
 end
@@ -131,7 +131,7 @@ end
 Model = {'Benchmark no CBDC','Benchmark with CBDC',...
          'Dollarization no CBDC','Dollarization with CBDC'};
 
-T = 0:20;
+T = 0:6;
 filename = 'TFP.png';
 
 figure('position',[10,10,1000,500])
@@ -198,7 +198,7 @@ title('CBDC')
 exportgraphics(gcf,filename)
 
 % ===============================================
-T = 0:6;
+T = 0:3;
 filename = 'Monetary.png';
 
 figure('position',[10,10,1000,500])
@@ -265,7 +265,7 @@ title('CBDC')
 exportgraphics(gcf,filename)
 
 % ===============================================
-T = 0:6;
+T = 0:3;
 filename = 'Liquidity.png';
 
 figure('position',[10,10,1000,500])
@@ -325,6 +325,141 @@ title('Cash')
 subplot(2,4,8);
 for n = 1:N
     plot(T,CBDC2_EPS_Z(n,T+1),'LineWidth',1); 
+    hold on; 
+end
+title('CBDC')
+
+exportgraphics(gcf,filename)
+
+% ===============================================
+T = 0:3;
+filename = 'R_star.png';
+
+figure('position',[10,10,1000,500])
+sgtitle('Foreign Interest Rate')
+
+subplot(2,4,1);
+for n = 1:N
+    plot(T,Y_EPS_R(n,T+1),'LineWidth',1); 
+    hold on; 
+end
+legend(Model,'Location','best')
+title('Output')
+
+subplot(2,4,2);
+for n = 1:N
+    plot(T,C1_EPS_R(n,T+1),'LineWidth',1); 
+    hold on; 
+end
+title('Consumption (unconstrained)')
+
+subplot(2,4,3);
+for n = 1:N
+    plot(T,C2_EPS_R(n,T+1),'LineWidth',1); 
+    hold on; 
+end
+title('Consumption (constrained)')
+
+subplot(2,4,4);
+for n = 1:N
+    plot(T,PI_H_EPS_R(n,T+1),'LineWidth',1); 
+    hold on; 
+end
+title('Domestic Inflation')
+
+subplot(2,4,5);
+for n = 1:N
+    plot(T,PI_EPS_R(n,T+1),'LineWidth',1); 
+    hold on; 
+end
+title('CPI Inflation')
+
+subplot(2,4,6);
+for n = 1:N
+    plot(T,TOT_EPS_R(n,T+1),'LineWidth',1); 
+    hold on; 
+end
+title('Terms of Trade')
+
+subplot(2,4,7);
+for n = 1:N
+    plot(T,M2_EPS_R(n,T+1),'LineWidth',1); 
+    hold on; 
+end
+title('Cash')
+
+
+subplot(2,4,8);
+for n = 1:N
+    plot(T,CBDC2_EPS_R(n,T+1),'LineWidth',1); 
+    hold on; 
+end
+title('CBDC')
+
+exportgraphics(gcf,filename)
+
+
+% ===============================================
+T = 0:3;
+filename = 'Y_star.png';
+
+figure('position',[10,10,1000,500])
+sgtitle('Foreign Output')
+
+subplot(2,4,1);
+for n = 1:N
+    plot(T,Y_EPS_Y(n,T+1),'LineWidth',1); 
+    hold on; 
+end
+legend(Model,'Location','best')
+title('Output')
+
+subplot(2,4,2);
+for n = 1:N
+    plot(T,C1_EPS_Y(n,T+1),'LineWidth',1); 
+    hold on; 
+end
+title('Consumption (unconstrained)')
+
+subplot(2,4,3);
+for n = 1:N
+    plot(T,C2_EPS_Y(n,T+1),'LineWidth',1); 
+    hold on; 
+end
+title('Consumption (constrained)')
+
+subplot(2,4,4);
+for n = 1:N
+    plot(T,PI_H_EPS_Y(n,T+1),'LineWidth',1); 
+    hold on; 
+end
+title('Domestic Inflation')
+
+subplot(2,4,5);
+for n = 1:N
+    plot(T,PI_EPS_Y(n,T+1),'LineWidth',1); 
+    hold on; 
+end
+title('CPI Inflation')
+
+subplot(2,4,6);
+for n = 1:N
+    plot(T,TOT_EPS_Y(n,T+1),'LineWidth',1); 
+    hold on; 
+end
+title('Terms of Trade')
+
+subplot(2,4,7);
+for n = 1:N
+    plot(T,M2_EPS_Y(n,T+1),'LineWidth',1); 
+    hold on; 
+end
+title('Cash')
+
+
+subplot(2,4,8);
+for n = 1:N
+    plot(T,CBDC2_EPS_Y(n,T+1),'LineWidth',1); 
     hold on; 
 end
 title('CBDC')

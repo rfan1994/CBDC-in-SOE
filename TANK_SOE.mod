@@ -88,8 +88,8 @@ SIGMA = 2;
 CHI = 1;
 PHI = 3;
 ETA = 2;
-GAMMA = 0.9;
-GAMMA_STAR = 0.1;
+GAMMA = 0.58;
+GAMMA_STAR = 0.27;
 A = 0.9;
 B = 0.7; 
 DELTA_M = 0.1;
@@ -106,7 +106,7 @@ EPSILON = 6;
 KAPPA_I = 1.728; 
 EPSILON_B = 3; 
 KAPPA_B = 5; 
-KAPPA_D = 10; 
+KAPPA_D = 1; 
 KAPPA_M = 10; 
 BF_BAR = 0.05;
 DF_BAR = 0;
@@ -128,7 +128,7 @@ PHI_Y = 10;
 PHI_E = 2;
 R_BAR = 1.03/0.99;
 PI_BAR = 1.03;
-Y_BAR = 2.29561*0.983381;
+Y_BAR = 0.85933*2.24238;
 E_BAR = 1.03;
 //% SHOCKS
 RHO_A = 0.9;
@@ -352,7 +352,7 @@ v1 = -72.4908;
 lm2 = 0.642964;
 c2 = 1.16483;
 h2 = 0.988214;
-m2 = 1.20935;
+m2 = 0.35054;
 cbdc2 = 0;
 l2 = 1.20935;
 s2 = 0.0061711;
@@ -373,6 +373,9 @@ tax = 0.154551;
 t1 = 0.158606;
 t2 = 0.158606;
 end;
+
+
+
 
 steady(solve_algo = 4, maxit = 5000);
 
