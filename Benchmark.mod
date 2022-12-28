@@ -38,14 +38,7 @@ var pi p_h s delta_e;
 var r t1 t2;
 
 //% OTHERS
-//% 35 output, 36-38 consumption 
-//% 39 interest rate, 40 deposit rate, 41 domestic inflation
-//% 42 domestic price, 43 real exchange, 44 terms of trade, 45 CPI inflation
-//% 46 wage, 47 deposit
-var log_y log_c log_c1 log_c2;
-var log_r log_r_d log_pi_h; 
-var log_p_h log_s log_tot log_pi;
-var log_w log_d1;
+var log_y log_c1 log_c2 log_k log_h1 log_h2 log_b_f log_r log_r_d log_w log_pi log_tot;
 
 //%-----------------------------------------------------------------------
 //% Declare model parameters
@@ -58,46 +51,66 @@ parameters LAMBDA;
 //% discount factor, IES, leisure weight, frisch
 //% ES, home bias
 //% transaction cost
+//% cash cost, transaction ES
 parameters BETA SIGMA CHI PHI;
 parameters ETA GAMMA GAMMA_STAR;
 parameters A B;
+parameters DELTA_M EPSILON_M;
 //% PRODUCTION
-//% capital share, depreciation, price adjustment, ES
+//% capital share, depreciation, price adjustment, production ES
 parameters ALPHA DELTA KAPPA_P EPSILON;
 //% FINANCE
-//% investment adjustment, ES
-//% foreign adjustment, foreign bond
+//% investment adjustment, deposit ES
+//% foreign adjustment cost
 parameters KAPPA_I EPSILON_B;
-parameters KAPPA_B BF_BAR;
+parameters KAPPA_B KAPPA_D KAPPA_M BF_BAR DF_BAR MF_BAR;
 //% Fiscal
-parameters PHI_B PHI_M PHI_G B_BAR M_BAR T1_BAR T2_BAR;
+parameters TAU_C PHI_B PHI_M PHI_G B_BAR M_BAR T1_BAR T2_BAR;
 //% MONETARY
 //% taylor rule
 parameters RHO_R PHI_PI PHI_Y PHI_E R_BAR PI_BAR Y_BAR E_BAR;
-//% CBDC spread
-parameters DELTA_M;
 //% SHOCKS
 parameters RHO_A RHO_Z RHO_G RHO_Y_STAR RHO_R_STAR; 
 parameters A_BAR Z_BAR G_BAR Y_STAR_BAR R_STAR_BAR;
 parameters STDERR_A STDERR_Z STDERR_G STDERR_Y_STAR STDERR_R_STAR STDERR_M;
 
-//% Steady state
-Y_BAR = 1.42648*0.98886; 
-
-//% Parameters
-LAMBDA = 0.05;
-BETA = 0.997;
+//% AGGREGATE
+//% RT share
+LAMBDA = 0.2;
+//% PREFERENCE
+//% discount factor, IES, leisure weight, frisch
+//% ES, home bias
+//% transaction cost, transaction ES
+BETA = 0.99;
 SIGMA = 2;
-CHI = 3.4;
-PHI = 1;
-A = 2;
-B = 0.005; 
+CHI = 1;
+PHI = 3;
+ETA = 2;
+GAMMA = 0.58;
+GAMMA_STAR = 0.27;
+A = 0.9;
+B = 0.7; 
+DELTA_M = 0.1;
+EPSILON_M = 8;
+//% PRODUCTION
+//% capital share, depreciation, price adjustment, production ES
 ALPHA = 0.33;
 DELTA = 0.025;
 KAPPA_P = 2;
-EPSILON = 4;
-KAPPA_I = 5.46; 
-EPSILON_B = 3;
+EPSILON = 6;
+//% FINANCE
+//% investment adjustment, deposit ES
+//% foreign adjustment cost
+KAPPA_I = 1.728; 
+EPSILON_B = 3; 
+KAPPA_B = 2; 
+KAPPA_D = 5; 
+KAPPA_M = 10; 
+BF_BAR = 0.05;
+DF_BAR = 5;
+MF_BAR = 0;
+//% Fiscal
+TAU_C = 0.12;
 PHI_B = 1;
 PHI_M = 1;
 PHI_G = 1;
@@ -105,37 +118,33 @@ B_BAR = 2;
 M_BAR = 0;
 T1_BAR = 0;
 T2_BAR = 0;
+//% MONETARY
+//% taylor rule
 RHO_R = 0.5;
 PHI_PI = 10;
 PHI_Y = 10;
-R_BAR = 1.02/0.997;
-PI_BAR = 1.02;
-DELTA_M = 0.2;
-RHO_A = 0.96;
-RHO_Z = 0.95; 
-RHO_G = 0.95; 
-A_BAR = 1; 
-Z_BAR = 1; 
-G_BAR = 0; 
-STDERR_A = 0.015;
-STDERR_Z = 0.01;
-STDERR_G = 0.01;
-STDERR_M = 0.25;
-
-//% SOE
-ETA = 2;
-GAMMA = 0.9;
-GAMMA_STAR = 0.1;
-KAPPA_B = 5; 
-BF_BAR = 0.5;
-E_BAR = 1.02;
-PHI_E = 2;
+PHI_E = 10;
+R_BAR = 1.03/0.99;
+PI_BAR = 1.03;
+Y_BAR = 0.852787*2.25038;
+E_BAR = 1;
+//% SHOCKS
+RHO_A = 0.9;
+RHO_Z = 0.7217; 
+RHO_G = 0.8; 
 Y_STAR_BAR = 1;
 R_STAR_BAR = 1/BETA;
-RHO_Y_STAR = 0.95;
-RHO_R_STAR = 0.99;
-STDERR_Y_STAR = 0.01;
-STDERR_R_STAR = 0.01;
+A_BAR = 1; 
+Z_BAR = 1; 
+G_BAR = 0.3; 
+RHO_Y_STAR = 0.6031;
+RHO_R_STAR = 0.5374;
+STDERR_A = 0.0711;
+STDERR_Z = 0.0694;
+STDERR_G = 0.05;
+STDERR_Y_STAR = 0.0788;
+STDERR_R_STAR = 0.0799;
+STDERR_M = 0.25;
 
 //%------------------------------------------------------------
 //% Model equations
@@ -157,7 +166,7 @@ h = (1-LAMBDA)*h1+LAMBDA*h2;
 k = (1-LAMBDA)*d1;
 
 //% 5 resource constraint
-y_h = GAMMA*p_h^(-ETA)*(c+i)+a_g+KAPPA_P/2*(pi_h-PI_BAR)^2*y_h+GAMMA_STAR*(p_h/s)^(-ETA)*a_y_star;
+y_h*(1-KAPPA_P/2*(pi_h-PI_BAR)^2) = GAMMA*p_h^(-ETA)*(c+i)+a_g+GAMMA_STAR*(p_h/s)^(-ETA)*a_y_star;
 
 //% 6 welfare
 v = (1-LAMBDA)*v1+LAMBDA*v2;
@@ -167,7 +176,7 @@ v = (1-LAMBDA)*v1+LAMBDA*v2;
 c1^(-SIGMA) = lm1;
 
 //% 8 labor 
-h1^PHI = lm1*w/CHI;
+h1^PHI = lm1*w/CHI; 
 
 //% 9 deposit 
 lm1 = BETA*lm1(+1)*r_d/pi(+1);
@@ -224,7 +233,7 @@ EPSILON/KAPPA_P*(mc/p_h-(EPSILON-1)/EPSILON)
 pi_h = p_h/p_h(-1)*pi;
 
 //% 25 domestic price 
-p_h*y_h = c+i+p_h*a_g+KAPPA_P/2*(pi_h-PI_BAR)^2+s*(1-LAMBDA)*(b_f1-a_r_star(-1)*b_f1(-1)+KAPPA_B/2*((1-LAMBDA)*b_f1-BF_BAR)^2);
+p_h*y_h*(1-KAPPA_P/2*(pi_h-PI_BAR)^2) = c+i+p_h*a_g+s*(1-LAMBDA)*(b_f1-a_r_star(-1)*b_f1(-1)+KAPPA_B/2*((1-LAMBDA)*b_f1-BF_BAR)^2);
 
 //% 26 real exchange rate
 1 = GAMMA*p_h^(1-ETA)+(1-GAMMA)*s^(1-ETA);
@@ -261,42 +270,18 @@ t1 = a_g+r(-1)/pi*(1-LAMBDA)*b1(-1)-(1-LAMBDA)*b1;
 t2 = a_g+r(-1)/pi*(1-LAMBDA)*b1(-1)-(1-LAMBDA)*b1;
 
 //% OTHERS
-//% 35 output 
 log_y = log(p_h*y_h);
-
-//% 36-38 consumption
-log_c = log(c);
 log_c1 = log(c1);
 log_c2 = log(c2);
-
-//% 39 interest rate
+log_k = log(k);
+log_h1 = log(h1);
+log_h2 = log(h2);
+log_b_f = log(b_f1);
 log_r = log(r);
-
-//% 40 deposit rate
 log_r_d = log(r_d);
-
-//% 41 domestic inflation
-log_pi_h = log(pi_h);
-
-//% 42 domestic price
-log_p_h = log(p_h);
-
-//% 43 real exchange
-log_s = log(s);
-
-//% 44 terms of trade
-log_tot = log(p_h/s);
-
-//% 45 CPI inflation
-log_pi = log(pi);
-
-//% 46 CPI inflation
 log_w = log(w);
-
-//% 47 deposit
-log_d1 = log(d1);
-
-
+log_pi = log(pi);
+log_tot = log(p_h/s);
 end;
 
 //%------------------------------------------------------------
@@ -358,11 +343,9 @@ end;
 //% TO SEE PROPERTIES OF MODEL
 //%------------------------------------------------------------
 
-stoch_simul(nograph, order = 2, hp_filter = 1600, irf = 101) 
-v1 v2 v;
+stoch_simul(nograph, order = 1, hp_filter = 100, irf = 101) 
+log_y log_c1 log_c2 log_k log_h1 log_h2 log_b_f log_r log_r_d log_w log_pi log_tot;
 
-stoch_simul(nograph, order = 1, hp_filter = 1600, irf = 101) 
-log_y log_c log_c1 log_c2 log_r log_r_d log_pi_h log_p_h log_s log_tot log_pi log_w log_d1;
 
 
 

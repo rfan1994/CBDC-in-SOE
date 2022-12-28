@@ -41,15 +41,15 @@ P_{Ft} = e_tp_t^*
 \end{align*}
 The real exchange rate is defined as the ratio of the foreign and domestic price levels, where the foreign price level is converted into domestic currency units via the nominal exchange rate: 
 \begin{align*}
-s_t = e_t \frac{p_t^*}{p_t}
+\xi_t = e_t \frac{p_t^*}{p_t}
 \end{align*}
 Define $p_{Ht} = P_{Ht}/p_t$ and  $p_{Ft} = P_{Ft}/p_t$ as the price of domestic and foreign goods in terms of the domestic CPI, then the real exchange rate can be written as: 
 \begin{align*}
-s_t = p_{Ft}, 
+\xi_t = p_{Ft}, 
 \end{align*}
 and the terms of trade, i.e., the ratio between the price imports and the price exports can be written as 
 \begin{align*}
-tot_t = \frac{P_{Ft}}{P_{Ht}} = \frac{s_t}{p_{Ht}}
+tot_t = \frac{P_{Ft}}{P_{Ht}} = \frac{\xi_t}{p_{Ht}}
 \end{align*}
 
 \subsubsection*{Unconstrained HH ($1-\lambda$)} 
@@ -80,8 +80,8 @@ The unconstrained households' problem can be defined as (all variables are in re
 \end{align*}
 subject to the budget and liquidity constraints:
 \begin{align*} 
-&(1+s_{1t}+\tau_c)c_{1t}+\int_0^1(d_{1t}(j)-\frac{r_{t-1}^d(j)}{\pi_t}d_{1t-1}(j))dj +(b_{1Ht}-\frac{r_{t-1}}{\pi_t}b_{1Ht-1})+s_t(b_{1Ft}-r^*_{t-1}b_{1Ft-1}) \\
-&\leq w_th_{1t}+t_{1t}+\Gamma_{1t}-\frac{\kappa_B}{2}s_t((1-\lambda)b_{1Ft}-\bar{b}_F)^2 \quad (\lambda_{1t}) \\
+&(1+s_{1t}+\tau_c)c_{1t}+\int_0^1(d_{1t}(j)-\frac{r_{t-1}^d(j)}{\pi_t}d_{1t-1}(j))dj +(b_{1Ht}-\frac{r_{t-1}}{\pi_t}b_{1Ht-1})+\xi_t(b_{1Ft}-r^*_{t-1}b_{1Ft-1}) \\
+&\leq w_th_{1t}+t_{1t}+\Gamma_{1t}-\frac{\kappa_B}{2}\xi_t((1-\lambda)b_{1Ft}-\bar{b}_F)^2 \quad (\lambda_{1t}) \\
 &l_{1t} = \int_0^1({d_{1t}(j)}^{\frac{\epsilon_b-1}{\epsilon_b}}dj)^{\frac{\epsilon_b}{\epsilon_b-1}} \quad (\tau_{1t}\lambda_{1t}) \\
 &s_{1t} = z_tA_1\frac{c_{1t}}{l_{1t}}+B_1\frac{l_{1t}}{c_{1t}}-2\sqrt{A_1B_1}  \quad (\mu_{1t}\lambda_{1t})
 \end{align*}
@@ -100,7 +100,7 @@ d_{1t}(j): \quad &-\lambda_{1t}+\beta E_t\lambda_{1t+1}\frac{r_{t}^d(j)}{\pi_{t+
 \label{b1H}
 b_{1Ht}: \quad &-\lambda_{1t}+\beta E_t\lambda_{1t+1}\frac{r_t}{\pi_{t+1}} = 0, \\
 \label{b1F}
-b_{1Ft}: \quad &-\lambda_{1t}+\beta E_t\lambda_{1t+1}\frac{s_{t+1}}{s_t}t_t^*-\lambda_{1t}\kappa_B(1-\lambda)((1-\lambda)b_{1Ft}-\bar{b}_F) = 0,
+b_{1Ft}: \quad &-\lambda_{1t}+\beta E_t\lambda_{1t+1}\frac{\xi_{t+1}}{\xi_t}t_t^*-\lambda_{1t}\kappa_B(1-\lambda)((1-\lambda)b_{1Ft}-\bar{b}_F) = 0,
 \end{align}
 Define the transaction wedge as:
 \begin{align}
@@ -136,7 +136,7 @@ The constrained households' problem can be defined as (all variables are in real
 \end{align*}
 subject to the budget and liquidity constraints:
 \begin{align*} 
-\text{s.t.} \quad & (1+s_{2t}+\tau_c\frac{CBDC_{2t}}{l_{2t}})c_{2t}+(m_{2t}-\frac{1-\delta_m}{\pi_t}m_{2t-1})+(CBDC_{2t}-\frac{r_{t-1}^{CBDC}}{\pi_t}CBDC_{2t-1}) \\
+\text{s.t.} \quad & (1+s_{2t}+\tau_c\frac{CBDC_{2t}}{l_{2t}})c_{2t}+(m_{2t}-\frac{1-\delta_m}{\pi_t}m_{2t-1})+(CBDC_{2t}-\frac{1}{\pi_t}CBDC_{2t-1}) \\
 &\leq w_th_{2t}+t_{2t}\\
 &l_{2t} = ((m_{2t})^{\frac{\epsilon_m-1}{\epsilon_m}}+(CBDC_{2t})^{\frac{\epsilon_m-1}{\epsilon_m}})^{\frac{\epsilon_m}{\epsilon_m-1}}  \quad (\tau_{2t}\lambda_{2t})\\
 & s_{2t} = z_tA_2\frac{c_{2t}}{l_{2t}}+B_2\frac{l_{2t}}{c_{2t}}-2\sqrt{A_2B_2} \quad (\mu_{2t}\lambda_{2t})
@@ -154,7 +154,7 @@ l_{2t}: \quad &\lambda_{2t}\tau_c\frac{CBDC_{2t}}{l_{2t}^2}c_{2t}+\tau_{2t}\lamb
 \label{m2}
 m_{2t}: \quad &-\lambda_{2t}+\beta E_t\lambda_{2t+1}\frac{1-\delta_m}{\pi_{t+1}}+\mu_{2t} \lambda_{2t}(\frac{l_{2t}}{m_{2t}})^{\frac{1}{\epsilon_m}}= 0, \\
 \label{CBDC2}
-CBDC_{2t}: \quad &-\lambda_{2t}(1+\tau_c\frac{c_{2t}}{l_{2t}})+\beta E_t\lambda_{2t+1}\frac{r_{t}^{CBDC}}{\pi_{t+1}}+\mu_{2t} \lambda_{2t}(\frac{l_{2t}}{CBDC_{2t}})^{\frac{1}{\epsilon_m}}= 0.
+CBDC_{2t}: \quad &-\lambda_{2t}(1+\tau_c\frac{c_{2t}}{l_{2t}})+\beta E_t\lambda_{2t+1}\frac{1}{\pi_{t+1}}+\mu_{2t} \lambda_{2t}(\frac{l_{2t}}{CBDC_{2t}})^{\frac{1}{\epsilon_m}}= 0.
 \end{align}
 Similar to the unconstrained households, we can define the transaction wedge as:
 \begin{align}
@@ -222,7 +222,7 @@ y_{Ht}(i) = a_t(k_{t-1}(i))^{\alpha}(h_t(i))^{1-\alpha}
 \end{align*}
 where $a_t$ is the total factor productivity, which follows an autoregressive process: 
 \begin{align*}
-\log(a_t) = (1-\rho_a)\log(\bar{a})+\rho_a\log(a_{t-1})+\nu_t^a, \quad  \nu_t^a \sim N(0,\sigma_a^2)
+\log(a_t) = \rho_a\log(a_{t-1})+\nu_t^a, \quad  \nu_t^a \sim N(0,\sigma_a^2)
 \end{align*}
 Firms operate in monopolistic competition, so they set the price of their own good subject to the demand of final good firms. In addition, firms pay quadratic adjustment cost $AC_t(i)$ in nominal terms as in Rotemberg (1982), whenever they adjust prices with respect to the benchmark inflation rate $\bar{\pi}$:
 \begin{align*}
@@ -250,7 +250,7 @@ The marginal cost $mc_t$ is defined by rearranging the price condition:
 \subsection{Policy}
 The government finances public expenditure $g_t$ and transfers $\tau_{1t}$ and $\tau_{2t}$ by raising consumption tax and public debt:
 \begin{align*}
-g_t + (1-\lambda)t_{1t}+\lambda t_{2t} &= (1-\lambda)(b_{1t}-\frac{r_{t-1}}{\pi_t}b_{1t-1})+\lambda(CBDC_{2t}-\frac{1}{\pi_t} CBDC_{2t-1} ) \\
+g_t + (1-\lambda)t_{1t}+\lambda t_{2t} &= (1-\lambda)(b_{1t}-\frac{r_{t-1}}{\pi_t}b_{1t-1})+\lambda(m_{2t}-\frac{1}{\pi_t} m_{2t-1}+CBDC_{2t}-\frac{1}{\pi_t} CBDC_{2t-1} ) \\
 & + (1-\lambda)\tau_c c_{1t} +\lambda\tau_c\frac{CBDC_{2t}}{l_{2t}}c_{2t}
 \end{align*}
 The central bank sets interest rate following the Taylor rule: 
@@ -268,9 +268,14 @@ The foreign CPI is assumed to be constant over time:
 \begin{align*}
 \pi^* = \frac{p_t^*}{p_{t-1}^*} = 1
 \end{align*}
-Given the home bias $\gamma^*$ of the foreign countr, the demand for domestic good of foreign sector is 
+Given the home bias $\gamma^*$ of the foreign country, the demand for domestic good of foreign sector is 
 \begin{align*}
-\gamma^*\Big(\frac{p_{Ht}}{s_t}\Big)^{-\eta}y_t^*
+\gamma^*\Big(\frac{p_{Ht}}{\xi_t}\Big)^{-\eta}y_t^*
+\end{align*}
+The market clearing condition for the domestic good is the following:
+\begin{align*}
+y_{Ht}(1-\frac{\kappa_P}{2}(\pi_{Ht}-\bar{\pi})^2) &= \gamma p_{Ht}^{\eta}((1-\lambda)(1+s_{1t})c_{1t}+\lambda((1+s_{2t})c_{2t}+\frac{\delta_m}{\pi_t}m_{2t-1}+i_t) \\
+&+g_t+\gamma^*(\frac{p_{Ht}}{\xi_t})^{-\eta}y_t^*
 \end{align*}
 \section{Model with Dollarization}
 In this section, I extend the model so that deposits and cash can be indexed by domestic or foreign currency. CBDC can only be indexed by domestic currency. 
@@ -278,7 +283,7 @@ In this section, I extend the model so that deposits and cash can be indexed by 
 \subsubsection*{Unconstrained HH ($1-\lambda$)} 
 The unconstrained households now can choose the deposit to be indexed by domestic $d_{1Ht}(j)$ or foreign currency $d_{1Ft}(j)$; the deposit indexed by domestic and foreign currency are perfect substitutes. The total liquidity for unconstrained households can be written as: 
 \begin{align*}
-l_{1t} = \int_0^1({d_{1Ht}(j)}^{\frac{\epsilon_b-1}{\epsilon_b}}dj)^{\frac{\epsilon_b}{\epsilon_b-1}}+s_t\int_0^1({d_{1Ft}(j)}^{\frac{\epsilon_b-1}{\epsilon_b}}dj)^{\frac{\epsilon_b}{\epsilon_b-1}} 
+l_{1t} = \int_0^1({d_{1Ht}(j)}^{\frac{\epsilon_b-1}{\epsilon_b}}dj)^{\frac{\epsilon_b}{\epsilon_b-1}}+\xi_t\int_0^1({d_{1Ft}(j)}^{\frac{\epsilon_b-1}{\epsilon_b}}dj)^{\frac{\epsilon_b}{\epsilon_b-1}} 
 \end{align*}
 The return to deposit indexed by domestic and foreign currency $r_{Ht}^d(j)$ and $r_{Ft}^d(j)$ are determined by the bank sector problem. 
 
@@ -290,10 +295,10 @@ The unconstrained households' problem can be defined as (all variables are in re
 \end{align*}
 subject to the budget and liquidity constraints:
 \begin{align*} 
-&(1+s_{1t}+\tau_c)c_{1t}+\int_0^1(d_{1Ht}(j)-\frac{r_{Ht-1}^d(j)}{\pi_t}d_{1Ht-1}(j))dj+s_t\int_0^1(d_{1Ft}(j)-r_{Ft-1}^d(j)d_{1Ft-1}(j))dj \\
-&+(b_{1Ht}-\frac{r_{t-1}}{\pi_t}b_{1Ht-1})+s_t(b_{1Ft}-r^*_{t-1}b_{1Ft-1}) \\
-&\leq w_th_{1t}+t_{1t}+\Gamma_{1t}-\frac{\kappa_D}{2}s_t((1-\lambda)\int_0^1d_{1Ft}(j)dj-\bar{d}_F)^2-\frac{\kappa_B}{2}s_t((1-\lambda)b_{1Ft}-\bar{b}_F)^2 \quad (\lambda_{1t}) \\
-&l_{1t} = \int_0^1({d_{1Ht}(j)}^{\frac{\epsilon_b-1}{\epsilon_b}}dj)^{\frac{\epsilon_b}{\epsilon_b-1}}+s_t\int_0^1({d_{1Ft}(j)}^{\frac{\epsilon_b-1}{\epsilon_b}}dj)^{\frac{\epsilon_b}{\epsilon_b-1}}  \quad (\tau_{1t}\lambda_{1t})\\
+&(1+s_{1t}+\tau_c)c_{1t}+\int_0^1(d_{1Ht}(j)-\frac{r_{Ht-1}^d(j)}{\pi_t}d_{1Ht-1}(j))dj+\xi_t\int_0^1(d_{1Ft}(j)-r_{Ft-1}^d(j)d_{1Ft-1}(j))dj \\
+&+(b_{1Ht}-\frac{r_{t-1}}{\pi_t}b_{1Ht-1})+\xi_t(b_{1Ft}-r^*_{t-1}b_{1Ft-1}) \\
+&\leq w_th_{1t}+t_{1t}+\Gamma_{1t}-\frac{\kappa_D}{2}\xi_t((1-\lambda)\int_0^1d_{1Ft}(j)dj-\bar{d}_F)^2-\frac{\kappa_B}{2}\xi_t((1-\lambda)b_{1Ft}-\bar{b}_F)^2 \quad (\lambda_{1t}) \\
+&l_{1t} = \int_0^1({d_{1Ht}(j)}^{\frac{\epsilon_b-1}{\epsilon_b}}dj)^{\frac{\epsilon_b}{\epsilon_b-1}}+\xi_t\int_0^1({d_{1Ft}(j)}^{\frac{\epsilon_b-1}{\epsilon_b}}dj)^{\frac{\epsilon_b}{\epsilon_b-1}}  \quad (\tau_{1t}\lambda_{1t})\\
 &s_{1t} = z_tA_1\frac{c_{1t}}{l_{1t}}+B_1\frac{l_{1t}}{c_{1t}}-2\sqrt{A_1B_1}  \quad (\mu_{1t}\lambda_{1t})
 \end{align*}
 Taking first order conditions with respect to $c_{1t}, h_{1t}, s_{1t}, l_{1t}, d_{1Ht}(j), d_{1Ft}(j), b_{1Ht}, b_{1Ft}$: 
@@ -304,11 +309,11 @@ s_{1t}: \quad &-\lambda_{1t}c_{1t}-\tau_{1t}\lambda_{1t} = 0, \\
 l_{1t}: \quad &\tau_{1t}\lambda_{1t}(-z_tA_1\frac{c_{1t}}{l_{1t}^2}+B_1\frac{1}{c_{1t}})-\mu_{1t}\lambda_{1t} = 0, \\
 d_{1Ht}(j): \quad &-\lambda_{1t}+\beta E_t\lambda_{1t+1}\frac{r_{Ht}^d(j)}{\pi_{t+1}}+\mu_{1t}\lambda_{1t}(\frac{d_{1Ht}}{d_{1Ht}(j)})^{\frac{1}{\epsilon_b}} = 0, \\
 \begin{split}
-d_{1Ft}(j): \quad &-\lambda_{1t}+\beta E_t\lambda_{1t+1}\frac{s_{t+1}}{s_t}r_{Ft}^d(j)+\mu_{1t}\lambda_{1t}(\frac{d_{1Ft}}{d_{1Ft}(j)})^{\frac{1}{\epsilon_b}}  \\
+d_{1Ft}(j): \quad &-\lambda_{1t}+\beta E_t\lambda_{1t+1}\frac{\xi_{t+1}}{\xi_t}r_{Ft}^d(j)+\mu_{1t}\lambda_{1t}(\frac{d_{1Ft}}{d_{1Ft}(j)})^{\frac{1}{\epsilon_b}}  \\
 &-\lambda_{1t}\kappa_D(1-\lambda)((1-\lambda)\int_0^1d_{1Ft}(j)dj-\bar{d}_F) = 0, 
 \end{split} \\
 b_{1Ht}: \quad &-\lambda_{1t}+\beta E_t\lambda_{1t+1}\frac{r_t}{\pi_{t+1}} = 0, \\
-b_{1Ft}: \quad &-\lambda_{1t}+\beta E_t\lambda_{1t+1}\frac{s_{t+1}}{s_t}t_t^*-\lambda_{1t}\kappa_B(1-\lambda)((1-\lambda)b_{1Ft}-\bar{b}_F) = 0,
+b_{1Ft}: \quad &-\lambda_{1t}+\beta E_t\lambda_{1t+1}\frac{\xi_{t+1}}{\xi_t}t_t^*-\lambda_{1t}\kappa_B(1-\lambda)((1-\lambda)b_{1Ft}-\bar{b}_F) = 0,
 \end{align*}
 with 
 \begin{align*}
@@ -328,9 +333,9 @@ where $\tau_{Bt}$ and $\tau_{Dt}$ are wedges due to the quadratic adjustment cos
 
 \subsubsection*{Constrained HH  ($\lambda$)}
 The constrained households now can choose to hold domestic $m_{2Ht}$ or foreign cash $m_{2Ft}$. CBDC is only indexed in domestic currency. 
-Domestic cash users are facing an additional cost $\delta_m$, since cash is under the risk of being stolen and subject to an adjustment cost. Domestic and foreign currency are perfect substitutes. Cash and CBDC are substitutes with elasticity of substitution $\epsilon_m>1$ . The total liquidity for constrained households can be written as: 
+Domestic cash users are facing an additional cost $\delta_m$, since cash is at the risk of being stolen and subject to an adjustment cost. Domestic and foreign currency are perfect substitutes. Cash and CBDC are substitutes with the elasticity of substitution $\epsilon_m>1$. The total liquidity for constrained households can be written as follows: 
 \begin{align*}
-l_{2t} = ((m_{2Ht})^{\frac{\epsilon_m-1}{\epsilon_m}}+(s_t m_{2Ft})^{\frac{\epsilon_m-1}{\epsilon_m}}+(CBDC_{2t})^{\frac{\epsilon_m-1}{\epsilon_m}})^{\frac{\epsilon_m}{\epsilon_m-1}}
+l_{2t} = ((m_{2Ht}+\xi_t m_{2Ft})^{\frac{\epsilon_m-1}{\epsilon_m}}+(CBDC_{2t})^{\frac{\epsilon_m-1}{\epsilon_m}})^{\frac{\epsilon_m}{\epsilon_m-1}}
 \end{align*}
 
 The constrained households' problem can be defined as (all variables are in real terms):
@@ -339,9 +344,9 @@ The constrained households' problem can be defined as (all variables are in real
 \end{align*}
 subject to the budget and liquidity constraints:
 \begin{align*} 
-\text{s.t.} \quad & (1+s_{2t}+\tau_c\frac{CBDC_{2t}}{l_{2t}})c_{2t}+(m_{2Ht}-\frac{1-\delta_m}{\pi_t}m_{2Ht-1})+s_t(m_{2Ft}-m_{2Ft-1})\\
-&+(CBDC_{2t}-\frac{r_{t-1}^{CBDC}}{\pi_t}CBDC_{2t-1})  \leq w_th_{2t}+t_{2t}-\frac{\kappa_M}{2}s_t(\lambda m_{2Ft}-\bar{m}_F)^2  \quad (\lambda_{2t})\\
-&l_{2t} = ((m_{2Ht})^{\frac{\epsilon_m-1}{\epsilon_m}}+(s_t m_{2Ft})^{\frac{\epsilon_m-1}{\epsilon_m}}+(CBDC_{2t})^{\frac{\epsilon_m-1}{\epsilon_m}})^{\frac{\epsilon_m}{\epsilon_m-1}} \quad (\tau_{2t}\lambda_{2t}) \\
+\text{s.t.} \quad & (1+s_{2t}+\tau_c\frac{CBDC_{2t}}{l_{2t}})c_{2t}+(m_{2Ht}-\frac{1-\delta_m}{\pi_t}m_{2Ht-1})+\xi_t(m_{2Ft}-m_{2Ft-1})\\
+&+(CBDC_{2t}-\frac{1}{\pi_t}CBDC_{2t-1})  \leq w_th_{2t}+t_{2t}-\frac{\kappa_M}{2}\xi_t(\lambda m_{2Ft}-\bar{m}_F)^2  \quad (\lambda_{2t})\\
+&l_{2t} = ((m_{2Ht}+\xi_t m_{2Ft})^{\frac{\epsilon_m-1}{\epsilon_m}}+(CBDC_{2t})^{\frac{\epsilon_m-1}{\epsilon_m}})^{\frac{\epsilon_m}{\epsilon_m-1}} \quad (\tau_{2t}\lambda_{2t}) \\
 & s_{2t} = z_tA_2\frac{c_{2t}}{l_{2t}}+B_2\frac{l_{2t}}{c_{2t}}-2\sqrt{A_2B_2} \quad (\mu_{2t}\lambda_{2t})
 \end{align*}
 Taking first order conditions with respect to $c_{2t}, h_{2t}, s_{2t}, l_{2t}, m_{2Ht}, m_{2Ft}, CBDC_{2t}$: 
@@ -350,9 +355,9 @@ c_{2t}: \quad &c_{2t}^{-\sigma}-\lambda_{2t}(1+s_{2t}+\tau_c\frac{CBDC_{2t}}{l_{
 h_{2t}: \quad &-\chi h_{2t}^{\phi}+\lambda_{2t}\omega_t  = 0, \\
 s_{2t}: \quad &-\lambda_{2t}c_{2t}-\tau_{2t}\lambda_{2t} = 0, \\
 l_{2t}: \quad &\lambda_{2t}\tau_c\frac{CBDC_{2t}}{l_{2t}^2}c_{2t}+\tau_{2t}\lambda_{2t}(-z_tA_2\frac{c_{2t}}{l_{2t}^2}+B_2\frac{1}{c_{2t}})-\mu_{2t}\lambda_{2t} = 0, \\
-m_{2Ht}: \quad &-\lambda_{2t}+\beta E_t\lambda_{2t+1}\frac{1-\delta_m}{\pi_{t+1}}+\mu_{2t} \lambda_{2t}(\frac{l_{2t}}{m_{2Ht}})^{\frac{1}{\epsilon_m}}= 0, \\
-m_{2Ft}: \quad &-\lambda_{2t}+\beta E_t\lambda_{2t+1}\frac{s_{t+1}}{s_t}+\mu_{2t} \lambda_{2t}(\frac{l_{2t}}{s_tm_{2Ft}})^{\frac{1}{\epsilon_m}}-\lambda_{2t}\kappa_M\lambda(\lambda m_{2Ft}-\bar{m}_F) = 0, \\
-CBDC_{2t}: \quad &-\lambda_{2t}(1+\tau_c\frac{c_{2t}}{l_{2t}})+\beta E_t\lambda_{2t+1}\frac{r_{t}^{CBDC}}{\pi_{t+1}}+\mu_{2t} \lambda_{2t}(\frac{l_{2t}}{CBDC_{2t}})^{\frac{1}{\epsilon_m}}= 0.
+m_{2Ht}: \quad &-\lambda_{2t}+\beta E_t\lambda_{2t+1}\frac{1-\delta_m}{\pi_{t+1}}+\mu_{2t} \lambda_{2t}(\frac{l_{2t}}{m_{2Ht}+\xi_t m_{2Ft}})^{\frac{1}{\epsilon_m}}= 0, \\
+m_{2Ft}: \quad &-\lambda_{2t}+\beta E_t\lambda_{2t+1}\frac{\xi_{t+1}}{\xi_t}+\mu_{2t} \lambda_{2t}(\frac{l_{2t}}{m_{2Ht}+\xi_t m_{2Ft}})^{\frac{1}{\epsilon_m}}-\lambda_{2t}\kappa_M\lambda(\lambda m_{2Ft}-\bar{m}_F) = 0, \\
+CBDC_{2t}: \quad &-\lambda_{2t}(1+\tau_c\frac{c_{2t}}{l_{2t}})+\beta E_t\lambda_{2t+1}\frac{1}{\pi_{t+1}}+\mu_{2t} \lambda_{2t}(\frac{l_{2t}}{CBDC_{2t}})^{\frac{1}{\epsilon_m}}= 0.
 \end{align*}
 
 
@@ -366,17 +371,17 @@ d_{Ft}(j) &= \Biggl(\frac{(\frac{r_t^*}{1+\tau_{Bt}}-\frac{r_t^d(j)}{1+\tau_{Dt}
 Banks are owned by unconstrained households, so bankers solve the following optimization problem: 
 \begin{align*}
  &\max_{r_t^d(j),i_t(j),k_t(j)}E_0 \sum_0^{\infty}\beta^t\frac{\lambda_{1t}}{\lambda_{10}}(r_t^kk_{t-1}(j)-i_t(j) \\
- &+(d_{Ht}(j)-\frac{r_{Ht-1}^d(j)}{\pi_t}d_{Ht-1}(j))+s_t(d_{Ft}(j)-r_{Ft-1}^d(j)d_{Ft-1}(j)),
+ &+(d_{Ht}(j)-\frac{r_{Ht-1}^d(j)}{\pi_t}d_{Ht-1}(j))+\xi_t(d_{Ft}(j)-r_{Ft-1}^d(j)d_{Ft-1}(j)),
  \end{align*}
 subject to the law of motion of capital and balance sheet constraint: 
  \begin{align*}
   \quad & k_t(j) = (1-\delta)k_{t-1}(j)+(1-\frac{\kappa_I}{2}(\frac{i_t(j)}{i_{t-1}(j)}-1))i_t(j) \\
-& k_t(j) = d_{Ht}(j)+s_td_{Ft}(j).
+& k_t(j) = d_{Ht}(j)+\xi_td_{Ft}(j).
 \end{align*}
 The equilibrium is symmetric and the optimal deposit rate chosen by bank is 
 \begin{align*}
 {r_{Ht}^d}^* &= \frac{\epsilon_b}{\epsilon_b-1}\frac{\beta E_t \lambda_{1t+1}(r_{t+1}^k+(1-\delta)q_{t+1})-(q_t-1)\lambda_{1t}}{\beta E_t (\lambda_{1t+1}/\pi_{t+1})}-\frac{1}{\epsilon_b-1}r_t \\
-{r_{Ft}^d}^* &= \frac{\epsilon_b}{\epsilon_b-1}\frac{\beta E_t \lambda_{1t+1}(r_{t+1}^k+(1-\delta)q_{t+1})-(q_t-1)\lambda_{1t}}{\beta E_t (\lambda_{1t+1}s_{t+1}/s_t)}-\frac{1}{\epsilon_b-1}\frac{1+\tau_D}{1+\tau_B}r_t^*
+{r_{Ft}^d}^* &= \frac{\epsilon_b}{\epsilon_b-1}\frac{\beta E_t \lambda_{1t+1}(r_{t+1}^k+(1-\delta)q_{t+1})-(q_t-1)\lambda_{1t}}{\beta E_t (\lambda_{1t+1}\xi_{t+1}/\xi_t)}-\frac{1}{\epsilon_b-1}\frac{1+\tau_D}{1+\tau_B}r_t^*
 \end{align*}
 
 
@@ -429,7 +434,7 @@ $B_2$     & Transaction cost (constraint)   & 0.7      & Money velocity   & 1.25
 \multicolumn{5}{l}{\bf Government}     \\
 $\bar{r}$     & Taylor rule: interest rate target            & $\bar{\pi}/\beta$    & Nominal interest rate &      	 \\
 $\bar{\pi}$     & Taylor rule: inflation target       & 1.03        & Inflation rate & 3\%                        				 \\
-$\overline{\Delta e}$    & Taylor rule: real exchange rate target       & 1.03   & Exchange rate & 1    			  \\
+$\overline{\Delta e}$    & Taylor rule: real exchange rate target       & 1   & Exchange rate & 1    			  \\
 $\tau_C$ & Consumption tax & 0.12 &  \\
 $\bar{B}$ & Government bond & 2 & National debt/GDP & 100\% \\
 $\bar{G}$ & Government purchase & 0.3 & Government purchase/GDP & 15\% \\
@@ -437,11 +442,11 @@ $\bar{G}$ & Government purchase & 0.3 & Government purchase/GDP & 15\% \\
 $\gamma$     & Domestic home bias           & 0.58      & Import/GDP ratio             & 	42.13\%                           \\
 $\gamma^*$  & Foreign home bias              & 0.27      & Export/GDP ratio             & 27.49\%                                     \\                                                   
 $\bar{B}_F$       & Steady state foreign bond level    & 0.05     & Financial account balance/GDP &      0.05              \\
-$\kappa_B$     & Foreign bond adjustment cost    & 5       & Financial account volatility &                                       \\
-$\bar{D}_f$       & Steady state foreign deposit level   & 0.5  \\
-$\kappa_D$      & Foreign deposit adjustment cost     & 3                                         \\
-$\bar{M}_f$      & Steady state foreign currency level     & 0.05  &  Dollar/GDP     \\
-$\kappa_M$     & Foreign currency adjustment cost     & 3                                         \\      \hline                                    
+$\kappa_B$     & Foreign bond adjustment cost    & 2       & Financial account volatility &                                       \\
+$\bar{D}_f$       & Steady state foreign deposit level   & 0  \\
+$\kappa_D$      & Foreign deposit adjustment cost     & 1                                         \\
+$\bar{M}_f$      & Steady state foreign currency level     & 0  &  Dollar/GDP     \\
+$\kappa_M$     & Foreign currency adjustment cost     & 1                                         \\      \hline                                    
 \end{tabular}
 \caption{Parameters with implied steady state implications}
 \end{table}
@@ -461,9 +466,9 @@ $\sigma_g$     &  Standard deviation of $g$  innovation & 0.05 \\
 $\sigma_m$     & Standard deviation of $m$ innovation   & 0.25              \\
 \multicolumn{3}{l}{\bf Taylor Rule}     \\ 
 $\rho_r$     & Interest rate elasticity    & 0.5      	 \\
-$\phi_{\pi}$    & Inflation elasticity       & 10       	\\
-$\phi_y$       & Output elasticity           & 10     	\\
-$\phi_e$       & Exchange rate elasticity          & 2      	\\\hline
+$\phi_{\pi}$    & Inflation elasticity       & 2      	\\
+$\phi_y$       & Output elasticity           & 2    	\\
+$\phi_e$       & Exchange rate elasticity          & 30      	\\\hline
 \end{tabular}
 \caption{Estimation}
 \end{table}
@@ -601,6 +606,20 @@ Figure \ref{IRF2} plots the responses of key variables following a positive mone
 \label{IRF3}
 \caption{Impulse Responses of Liquidity Shock}
 \scriptsize{Notes: Response of key variables to a positive 1 standard deviation liquidity shock. The Vertical axis indicates the percentage deviation from the steady state. The horizontal axis indicates years after the shock.}
+\end{figure}
+
+\begin{figure}[h!]
+\includegraphics[width=\textwidth]{Y_STAR}
+\label{IRF4}
+\caption{Impulse Responses of Foreign Output Shock}
+\scriptsize{Notes: Response of key variables to a positive 1 standard deviation foreign output shock. The Vertical axis indicates the percentage deviation from the steady state. The horizontal axis indicates years after the shock.}
+\end{figure}
+
+\begin{figure}[h!]
+\includegraphics[width=\textwidth]{R_STAR}
+\label{IRF5}
+\caption{Impulse Responses of Foreign Interest Rate Shock}
+\scriptsize{Notes: Response of key variables to a positive 1 standard deviation foreign interest rate shock. The Vertical axis indicates the percentage deviation from the steady state. The horizontal axis indicates years after the shock.}
 \end{figure}
 
 

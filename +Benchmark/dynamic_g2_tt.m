@@ -18,14 +18,9 @@ function T = dynamic_g2_tt(T, y, x, params, steady_state, it_)
 %   T           [#temp variables by 1]       double  vector of temporary terms
 %
 
-assert(length(T) >= 72);
+assert(length(T) >= 25);
 
 T = Benchmark.dynamic_g1_tt(T, y, x, params, steady_state, it_);
 
-T(68) = getPowerDeriv(T(3),(-params(6)),2);
-T(69) = (-(T(6)*(T(30)*(-((-y(18))*(y(5)+y(5))))/(y(5)*y(5)*y(5)*y(5))+T(29)*2*T(29))));
-T(70) = getPowerDeriv(y(19)*y(39)/params(32),params(28),2);
-T(71) = getPowerDeriv(T(24),1-params(26),2);
-T(72) = (-(y(6)*(1-params(1))*(-((-y(10))*(y(38)+y(38))))/(y(38)*y(38)*y(38)*y(38))));
 
 end

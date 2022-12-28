@@ -17,8 +17,8 @@ assert(length(T) >= 17);
 
 T = Benchmark.static_resid_tt(T, y, x, params);
 
-T(15) = getPowerDeriv(y(9)*y(29)/params(32),params(28),1);
-T(16) = getPowerDeriv(T(13),1-params(26),1);
+T(15) = getPowerDeriv(y(9)*y(29)/params(39),params(35),1);
+T(16) = getPowerDeriv(T(13),1-params(33),1);
 T(17) = getPowerDeriv(T(3),(-params(6)),1);
 
 end

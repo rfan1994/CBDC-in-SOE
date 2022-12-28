@@ -41,7 +41,7 @@ var pi p_h s delta_e;
 var r tax t1 t2;
 
 //% OTHERS
-var log_y log_c log_c1 log_c2 log_r log_r_d log_w log_pi_h log_pi log_tot log_d1 log_m2 log_cbdc2 log_m_f2;
+var log_y log_c log_c1 log_c2 log_r log_r_d log_w log_pi_h log_pi log_tot log_l2 log_m2 log_cbdc2;
 
 //%-----------------------------------------------------------------------
 //% Declare model parameters
@@ -106,11 +106,11 @@ EPSILON = 6;
 //% foreign adjustment cost
 KAPPA_I = 1.728; 
 EPSILON_B = 3; 
-KAPPA_B = 5; 
-KAPPA_D = 5; 
-KAPPA_M = 10; 
+KAPPA_B = 2; 
+KAPPA_D = 1; 
+KAPPA_M = 1; 
 BF_BAR = 0.05;
-DF_BAR = 5;
+DF_BAR = 0;
 MF_BAR = 0;
 //% Fiscal
 TAU_C = 0.12;
@@ -124,13 +124,13 @@ T2_BAR = 0;
 //% MONETARY
 //% taylor rule
 RHO_R = 0.5;
-PHI_PI = 10;
-PHI_Y = 10;
-PHI_E = 2;
-R_BAR = 1.03/0.99;
+PHI_PI = 2;
+PHI_Y = 2;
+PHI_E = 10;
 PI_BAR = 1.03;
+R_BAR = PI_BAR/BETA;
 Y_BAR = 0.852787*2.25038;
-E_BAR = 1.03;
+E_BAR = 1;
 //% SHOCKS
 RHO_A = 0.9;
 RHO_Z = 0.7217; 
@@ -172,7 +172,7 @@ h = (1-LAMBDA)*h1+LAMBDA*h2;
 k = (1-LAMBDA)*d1;
 
 //% 6 resource constraint
-y_h*(1-KAPPA_P/2*(pi_h-PI_BAR)^2) = GAMMA*p_h^(-ETA)*((1-LAMBDA)*(1+s1)*c1+LAMBDA*(1+s2)*c2+i)+a_g+GAMMA_STAR*(p_h/s)^(-ETA)*a_y_star;
+y_h*(1-KAPPA_P/2*(pi_h-PI_BAR)^2) = GAMMA*p_h^(-ETA)*((1-LAMBDA)*(1+s1)*c1+LAMBDA*((1+s2)*c2+DELTA_M*(m2(-1)/pi+m_f2*s/s(-1)))+i)+a_g+GAMMA_STAR*(p_h/s)^(-ETA)*a_y_star;
 
 //% 7 welfare
 v = (1-LAMBDA)*v1+LAMBDA*v2;
@@ -188,7 +188,7 @@ h1^PHI = lm1*w/CHI;
 lm1*(1-c1/l1*tau1) = BETA*lm1(+1)*r_d/pi(+1);
 
 //% 11 dollar deposit 
-//% lm1*(1+KAPPA_D*(1-LAMBDA)*((1-LAMBDA)*d_f1-DF_BAR)-c1/l1*tau1) = BETA*lm1(+1)*s(+1)/s*r_df;
+//% lm1*(1-c1/l1*tau1+KAPPA_D*(1-LAMBDA)*((1-LAMBDA)*d_f1-DF_BAR)) = BETA*lm1(+1)*r_df*s(+1)/s;
 d_f1 = 0;
 
 //% 12 bond
@@ -198,7 +198,7 @@ lm1 = BETA*lm1(+1)*r/pi(+1);
 lm1*(1+KAPPA_B*(1-LAMBDA)*((1-LAMBDA)*b_f1-BF_BAR)) = BETA*lm1(+1)*s(+1)/s*a_r_star;
 
 //% 14 liquidity
-l1 = d1;
+l1 = d1+s*d_f1;
 
 //% 15 transaction cost
 //% s1 = a_z*A*c1/l1+B*l1/c1-2*(A*B)^0.5;
@@ -219,11 +219,11 @@ c2^(-SIGMA) = lm2*(1+s2+tau2+TAU_C*cbdc2/l2);
 h2^PHI = lm2*w/CHI;
 
 //% 20 cash
-lm2*(1-c2/l2*(tau2+TAU_C*cbdc2/l2)*(l2/m2)^(1/EPSILON_M)) = BETA*lm2(+1)*(1-DELTA_M)/pi(+1);
+lm2*(1-c2/l2*(tau2+TAU_C*cbdc2/l2)*(l2/(m2+s*m_f2))^(1/EPSILON_M)) = BETA*lm2(+1)*(1-DELTA_M)/pi(+1);
 
 //% 21 dollar
-//% lm2*(1-c2/l2*(tau2+TAU_C*cbdc2/l2)*(l2/(s*m_f2))^(1/EPSILON_M)+KAPPA_M*LAMBDA*(LAMBDA*m_f2-MF_BAR)) = BETA*lm2(+1)*(1-DELTA_M)*s(+1)/s;
-m_f2 = 0; 
+//% lm2*(1-c2/l2*(tau2+TAU_C*cbdc2/l2)*(l2/(m2+s*m_f2))^(1/EPSILON_M)+KAPPA_M*LAMBDA*(LAMBDA*m_f2-MF_BAR)) = BETA*lm2(+1)*(1-DELTA_M)*s(+1)/s;
+m_f2 = 0;
 
 //% 22 CBDC
 //% lm2*(1-c2/l2*(tau2+TAU_C*cbdc2/l2)*(l2/cbdc2)^(1/EPSILON_M)+TAU_C*cbdc2/l2) = BETA*lm2(+1)/pi(+1);
@@ -239,7 +239,7 @@ s2 = a_z*A*c2/l2+B*l2/c2-2*(A*B)^0.5;
 tau2 = a_z*A*c2/l2-B*l2/c2;
 
 //% 26 BC
-(1+s2+TAU_C*cbdc2/l2)*c2+(m2-(1-DELTA_M)*m2(-1)/pi)+(cbdc2-cbdc2(-1)/pi) = w*h2-t2;
+(1+s2+TAU_C*cbdc2/l2)*c2+(m2-(1-DELTA_M)*m2(-1)/pi)+s*(m_f2-(1-DELTA_M)*m_f2*s/s(-1))+(cbdc2-cbdc2(-1)/pi) = w*h2-t2-KAPPA_M/2*s*(LAMBDA*m_f2-MF_BAR)^2;
 
 //% 27 welfare
 v2 = c2^(1-SIGMA)/(1-SIGMA)-CHI*h2^(1+PHI)/(1+PHI)+BETA*v2(+1);
@@ -280,9 +280,9 @@ pi_h = p_h/p_h(-1)*pi;
 
 //% 37 domestic price 
 p_h*y_h*(1-KAPPA_P/2*(pi_h-PI_BAR)^2) = (1-LAMBDA)*(1+s1)*c1+LAMBDA*(1+s2)*c2+i+p_h*a_g
-                                      + s*(1-LAMBDA)*(b_f1-a_r_star(-1)*b_f1(-1))
-                                      + LAMBDA*DELTA_M*m2(-1)/pi
-                                      + s*(1-LAMBDA)*KAPPA_B/2*((1-LAMBDA)*b_f1-BF_BAR)^2;
+                                      + s*(1-LAMBDA)*(b_f1-a_r_star(-1)*b_f1(-1))+s*LAMBDA*(m_f2-m_f2(-1))
+                                      + LAMBDA*DELTA_M*(m2(-1)/pi+m_f2(-1)*s/s(-1))
+                                      + KAPPA_B/2*s*(1-LAMBDA)*((1-LAMBDA)*b_f1-BF_BAR)^2+KAPPA_D/2*s*(1-LAMBDA)*((1-LAMBDA)*d_f1-DF_BAR)^2+KAPPA_M/2*s*LAMBDA*(LAMBDA*m_f2-MF_BAR)^2;
 
 //% 38 real exchange rate
 1 = GAMMA*p_h^(1-ETA)+(1-GAMMA)*s^(1-ETA);
@@ -321,7 +321,7 @@ t1 = p_h*a_g-tax+(1-LAMBDA)*(r(-1)/pi*b1(-1)-b1)+LAMBDA*(m2(-1)/pi-m2+cbdc2(-1)/
 t2 = p_h*a_g-tax+(1-LAMBDA)*(r(-1)/pi*b1(-1)-b1)+LAMBDA*(m2(-1)/pi-m2+cbdc2(-1)/pi-cbdc2);
 
 //% OTHERS
-log_y = log(p_h*y_h);
+log_y = log(y_h);
 log_c = log(c);
 log_c1 = log(c1);
 log_c2 = log(c2);
@@ -331,11 +331,9 @@ log_w = log(w);
 log_pi_h = log(pi_h);
 log_pi = log(pi);
 log_tot = log(s/p_h);
-log_d1 = log(d1);
-log_m2 = log(m2);
+log_l2 = log(l2);
+log_m2 = log(m2/l2);
 log_cbdc2 = 0;
-log_m_f2 = 0;
-
 end;
 
 //%------------------------------------------------------------
@@ -348,48 +346,48 @@ a_z = 1;
 a_g = 0.3;
 a_y_star = 1;
 a_r_star = 1.0101;
-c = 1.2671;
-h = 0.883049;
-k = 15.0352;
-i = 0.37588;
-y_h = 2.25038;
-v = -96.0984;
-lm1 = 0.497836;
-c1 = 1.33921;
-h1 = 0.845338;
-d1 = 18.794;
+c = 1.27107;
+h = 0.88324;
+k = 15.1045;
+i = 0.377613;
+y_h = 2.25412;
+v = -95.6768;
+lm1 = 0.497659;
+c1 = 1.33945;
+h1 = 0.846474;
+d1 = 18.8806;
 d_f1 = 0;
 b1 = 2.5;
 b_f1 = 0.0625;
-l1 = 18.794;
+l1 = 18.8806;
 s1 = 0;
 tau1 = 0;
-v1 = -87.4372;
-lm2 = 0.910794;
-c2 = 0.978688;
-h2 = 1.03389;
-m2 = 1.0161;
+v1 = -87.4927;
+lm2 = 0.897401;
+c2 = 0.997583;
+h2 = 1.0303;
+m2 = 1.05182;
 m_f2 = 0;
 cbdc2 = 0;
-l2 = 1.0161;
-s2 = 0.00617105;
-tau2 = 0.14011;
-v2 = -130.743;
-r_d = 1.0404;
+l2 = 1.05182;
+s2 = 0.00419883;
+tau2 = 0.115536;
+v2 = -128.413;
+r_d = 1.01076;
 r_df = 1.0101;
 r_k = 0.035101;
-w = 1.2134;
+w = 1.21873;
 q = 1;
-mc = 0.710656;
-pi_h = 1.03;
-pi = 1.03;
-p_h = 0.852787;
-s = 1.313;
-delta_e = 1.03;
-r = 1.0404;
-tax = 0.128564;
-t1 = 0.141555;
-t2 = 0.141555;
+mc = 0.712746;
+pi_h = 1.00065;
+pi = 1.00065;
+p_h = 0.855395;
+s = 1.30455;
+delta_e = 1.00065;
+r = 1.01076;
+tax = 0.128587;
+t1 = 0.148097;
+t2 = 0.148097;
 end;
 
 steady(solve_algo = 4, maxit = 5000);
@@ -413,7 +411,7 @@ end;
 //%------------------------------------------------------------
 
 stoch_simul(nograph, order = 1, hp_filter = 100, irf = 101) 
-v v1 v2 log_y log_c log_c1 log_c2 log_r log_r_d log_w log_pi_h log_pi log_tot log_d1 log_m2 log_cbdc2 log_m_f2;
+log_y log_c log_c1 log_c2 log_r log_r_d log_w log_pi_h log_pi log_tot log_l2 log_m2 log_cbdc2;
 
 
 
